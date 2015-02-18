@@ -1,0 +1,18 @@
+DirectoryIndex index.php index.html
+
+# setting the error pages
+ErrorDocument 403 /index.php?forbidden
+ErrorDocument 404 /index.php?not_found
+ErrorDocument 500 /index.php?error
+
+RewriteEngine On
+#RewriteBase /
+
+# skip all this if the file or the dir exists
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# rebuild `xxx.php/myreq` to `xxx.php?myreq`
+RewriteRule ^([a-zA-Z0-9\-_]+)\.php\/(.*)$ $1.php?$2 [QSA,L]
+# `index.php` will handle all requests
+RewriteRule ^(.*)$ index.php?$1 [QSA,L]
+

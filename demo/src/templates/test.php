@@ -1,0 +1,1 @@
+Hello <?php echo $name; ?> (from view file <?php echo __FILE__; ?>).
