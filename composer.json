@@ -1,0 +1,34 @@
+{
+    "name": "atelierspierrot/mvc-fundamental",
+    "type": "library",
+    "description": "A basic MVC system to use and extend easily.",
+    "keywords": [ "library", "mvc", "front-controller" ],
+    "homepage": "http://github.com/atelierspierrot/mvc-fundamental",
+    "license": "GPL-3.0",
+    "authors": [{
+        "name": "Les Ateliers Pierrot & contributors",
+        "email": "contact@ateliers-pierrot.fr",
+        "homepage": "http://www.ateliers-pierrot.fr/"
+    },{
+        "name": "Pierre Cassat",
+        "email": "me@e-piwi.fr",
+        "homepage": "http://github.com/piwi"
+    }],
+    "require": {
+        "php": ">=5.4.0",
+        "psr/log": "dev-master",
+        "atelierspierrot/patterns": "dev-master",
+        "atelierspierrot/library": "dev-master"
+    },
+    "require-dev": {
+        "sami/sami": "2.*",
+        "phpunit/phpunit": "3.7.*",
+        "phpmd/phpmd" : "1.4.*"
+    },
+    "autoload": { "psr-0": {  "MVCFundamental": "src" } },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
