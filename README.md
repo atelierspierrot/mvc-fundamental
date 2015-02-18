@@ -14,6 +14,8 @@ Add the package to your [Composer](http://getcomposer.org/) requirements:
         "atelierspierrot/mvc-fundamental": "dev-master"
     }
 
+Please note that this application requires PHP version 5.4 or higher.
+
 
 ## Usage
 
@@ -23,13 +25,14 @@ with as few lines of code as possible on a robust basic architecture.
 The default system embeds all basic "MVC web-app" objects: a `FrontController` 
 receives a `Request` and ask to a `Router` the action to launch matching a
 specific `Route` ; the action is often a `Controller`'s method (but not necessary)
-that generates an output using a `Template` ; finally, the `FrontController` 
+that generates an output using a `TemplateEngine` ; finally, the `FrontController` 
 returns a `Response`.
 
 All of these objects are overwritable but the whole application is designed
 to use some API interfaces defined in the `\MVCFundamental\Interfaces` namespace.
 Your custom objects MUST implement one of these interfaces (a good practice could
 be to extend the default objects).
+
 
 ## Quick start
 
@@ -94,17 +97,23 @@ be kept from a route writing:
 
 ```php
 // fetch a $name argument as a string (default)
-$app->addRoute('/my-route/{name}', function($name){ return "Hello $name";  })
+$app->addRoute('/my-route/{name}', function($name){ 
+    return "Hello $name";  
+})
 
 // fetch a $name argument as a string (default) and an ID argument as an integer
-$app->addRoute('/my-route/{name}/{id:\d+}', function($name, $id){ return "Hello $name, I got ID $id";  })
+$app->addRoute('/my-route/{name}/{id:\d+}', function($name, $id){ 
+    return "Hello $name, I got ID $id";  
+})
 ```
 
 As the callback's arguments are rearranged, you can write them in any order:
 
 ```php
 // arguments order usage does not matter
-$app->addRoute('/my-route/{name}/{id:\d+}', function($id, $name){ return "Hello $name, I got ID $id";  })
+$app->addRoute('/my-route/{name}/{id:\d+}', function($id, $name){ 
+    return "Hello $name, I got ID $id";  
+})
 ```
 
 You can always use the three arguments below if necessary:
@@ -116,7 +125,9 @@ You can always use the three arguments below if necessary:
 -   a `data` array with all request arguments as `array $data`
 
 ```php
-$app->addRoute('/my-route', function($request, $response, $app){ return "Hello world";  })
+$app->addRoute('/my-route', function($request, $response, $app){ 
+    return "Hello world";  
+})
 ```
 
 ### Callback return
@@ -195,6 +206,7 @@ $options = array(
     'request'                   => '\MVCFundamental\Basic\Request',
     'template_engine'           => '\MVCFundamental\Basic\TemplateEngine',
     'template_item'             => '\MVCFundamental\Basic\Template',
+    'layout_item'               => '\MVCFundamental\Basic\Layout',
     'locator'                   => '\MVCFundamental\Basic\Locator',
     'error_controller'          => '\MVCFundamental\Basic\ErrorController',
 
@@ -236,12 +248,16 @@ in the container:
 -   the **router**, which must implement the `\MVCFundamental\Interfaces\RouterInterface`
 -   the **request**, which must implement the `\MVCFundamental\Interfaces\RequestInterface`
 -   the **response**, which must implement the `\MVCFundamental\Interfaces\ResponseInterface`
--   the **template_engine**, which must implement the `\MVCFundamental\Interfaces\TemplateInterface`
+-   the **template_engine**, which must implement the `\MVCFundamental\Interfaces\TemplateEngineInterface`
 -   the **locator**, which must implement the `\MVCFundamental\Interfaces\LocatorInterface`
 -   the **error_controller**, which must implement the `\MVCFundamental\Interfaces\ErrorControllerInterface`
 
 More, any controller must implement the `\MVCFundamental\Interfaces\ControllerInterface`
 and the router must handle a collection of routes implementing the `\MVCFundamental\Interfaces\RouteInterface`.
+
+The template engine can handle some *templates* which must implement the 
+`MVCFundamental\Interfaces\TemplateInterface` and some *layouts* which must
+implement the `MVCFundamental\Interfaces\LayoutInterface`.
 
 They all default to their implementation in the `\MVCFundamental\Basic` namespace
 but you can overwrite all of them.
