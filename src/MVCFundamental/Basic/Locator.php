@@ -116,6 +116,12 @@ class Locator
             }
         }
 
+        // in package's resources
+        $f = __DIR__.'/../Resources/templates/'.$name;
+        if (file_exists($f)) {
+            return realpath($f);
+        }
+
         return null;
     }
 
