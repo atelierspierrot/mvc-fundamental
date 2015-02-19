@@ -426,9 +426,8 @@ exit('-- out --');
             $this->get('response')->redirect($url);
         } else {
             $req_cls = get_class($this->get('request'));
-            $this
-                ->set('request', new $req_cls($url, 'get'))
-                ->run();
+            $this->set('request', new $req_cls($url, 'get'));
+            $this->run();
         }
     }
 
