@@ -31,6 +31,21 @@ interface TemplateEngineInterface
     /**
      * @param   string  $view
      * @param   array   $params
+     * @return  \MVCFundamental\Interfaces\TemplateInterface
+     */
+    public function getNewTemplate($view, array $params = array());
+
+    /**
+     * @param   string  $view
+     * @param   array   $params
+     * @param   array   $options
+     * @return  \MVCFundamental\Interfaces\LayoutInterface
+     */
+    public function getNewLayout($view, array $params = array(), array $options = array());
+
+    /**
+     * @param   string  $view
+     * @param   array   $params
      * @return  string
      */
     public function renderTemplate($view, array $params = array());

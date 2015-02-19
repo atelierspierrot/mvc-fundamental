@@ -29,6 +29,8 @@ use \MVCFundamental\Exception\ErrorException;
 use \MVCFundamental\Commons\ServiceContainerProviderTrait;
 use \MVCFundamental\Commons\Helper;
 use \Patterns\Commons\Collection;
+use \Library\Helper\Directory as DirectoryHelper;
+use \Library\Logger;
 
 /**
  * Class AppKernel: the root core of the application
@@ -334,36 +336,99 @@ class AppKernel
     }
 
 // -------------------------
+// FrontControllerAwareInterface
+// -------------------------
+
+    /**
+     * @param \MVCFundamental\Interfaces\FrontControllerInterface $app
+     */
+    public static function setFrontController(FrontControllerInterface $app)
+    {
+        self::set('front_controller', $app, false);
+    }
+
+    /**
+     * @return \MVCFundamental\Interfaces\FrontControllerInterface
+     */
+    public static function getFrontController()
+    {
+        return self::get('front_controller');
+    }
+
+// -------------------------
 // AppKernelInterface
 // -------------------------
 
     /**
      * @param   \MVCFundamental\Interfaces\FrontControllerInterface $app
      * @return  void
+     * @throws  \MVCFundamental\Exception\ErrorException
      */
     public static function boot(FrontControllerInterface $app)
     {
+        // stores the FrontController
         self::setFrontController($app);
+
+        // define internal handlers
         set_exception_handler(array(__CLASS__, 'handleException'));
         if (self::getFrontController()->getOption('convert_error_to_exception')==true) {
             set_error_handler(array(__CLASS__, 'handleError'));
         }
+
+        // the required temporary directory
+        $tmp_dir = self::getFrontController()->getOption('temp_dir');
+        if (
+            empty($tmp_dir) ||
+            (!file_exists($tmp_dir) && !@DirectoryHelper::create($tmp_dir)) ||
+            !is_dir($tmp_dir) ||
+            !is_writable($tmp_dir)
+        ) {
+            $tmp_dir = DirectoryHelper::slashDirname(sys_get_temp_dir()).'mvc-fundamental';
+            if (!@DirectoryHelper::ensureExists($tmp_dir)) {
+                throw new ErrorException(
+                    sprintf('The "%s" temporary directory can not be created or is not writable (and a default one could not be taken)!', $tmp_dir)
+                );
+            }
+            self::getFrontController()->setOption('temp_dir', $tmp_dir);
+        }
+
+        // the application logger
+        if (self::getFrontController()->getOption('minimum_log_level')==null) {
+            self::getFrontController()->setOption('log_level',
+                self::getFrontController()->isMode('production') ? Logger::WARNING : Logger::DEBUG
+            );
+        }
+        $logger_options = array(
+            'duplicate_errors'  => false,
+            'directory'         => self::getFrontController()->getOption('temp_dir'),
+            'minimum_log_level' => self::getFrontController()->getOption('log_level'),
+        );
+        $logger_class = self::getFrontController()->getOption('app_logger');
+        if (!class_exists($logger_class) || !Helper::classImplements($logger_class, 'Psr\Log\LoggerInterface')) {
+            throw new ErrorException(
+                sprintf('A logger must exist and implement the "%s" interface (for class "%s")!',
+                    'Psr\Log\LoggerInterface', $logger_class)
+            );
+        }
+        self::set('logger', new $logger_class($logger_options));
+
+        // load services
         foreach (self::getFrontController()->getOptions() as $var=>$val) {
 
             if (array_key_exists($var, self::$_api)) {
-                self::getInstance()->setService($var, self::apiFactory($var, $val));
+                self::set($var, self::apiFactory($var, $val));
             }
 
             if (array_key_exists($var, self::$_constructors)) {
                 $cls_index  = self::$_constructors[$var];
                 self::getInstance()->setConstructor(
                     $var, function ($app, $name, array $arguments = array()) use ($val, $cls_index) {
-                        return $app::apiFactory($cls_index, $val, $arguments);
-                    }
+                    return $app::apiFactory($cls_index, $val, $arguments);
+                }
                 );
             }
-
         }
+
     }
 
     /**
@@ -408,7 +473,11 @@ class AppKernel
      * @return mixed
      */
     public static function log($level, $message, array $context = array())
-    {}
+    {
+        if (self::getInstance()->hasService('logger')) {
+            self::get('logger')->log($level, $message, $context);
+        }
+    }
 
 }
 

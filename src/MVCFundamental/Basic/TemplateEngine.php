@@ -36,12 +36,35 @@ class TemplateEngine
     /**
      * @param   string  $view
      * @param   array   $params
+     * @return  \MVCFundamental\Interfaces\TemplateInterface
+     */
+    public function getNewTemplate($view, array $params = array())
+    {
+        return FrontController::getNew('template_item', $view, $params);
+    }
+
+    /**
+     * @param   string  $view
+     * @param   array   $params
+     * @param   array   $options
+     * @return  \MVCFundamental\Interfaces\LayoutInterface
+     */
+    public function getNewLayout($view, array $params = array(), array $options = array())
+    {
+        $layout = FrontController::getNew('layout_item', $options);
+        $layout->setView($view)->setParams($params);
+        return $layout;
+    }
+
+    /**
+     * @param   string  $view
+     * @param   array   $params
      * @return  string
      */
     public function renderTemplate($view, array $params = array())
     {
-        $tpl = FrontController::getNew('template_item');
-        return $tpl->render($view, $params);
+        $tpl = $this->getNewTemplate($view, $params);
+        return $tpl->render();
     }
 
     /**

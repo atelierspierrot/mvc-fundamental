@@ -59,6 +59,98 @@ class Layout
         return $this->renderLayout();
     }
 
+// -------------------------------
+// LayoutInterface
+// -------------------------------
+
+    /**
+     * @param   string $view
+     * @return  $this
+     */
+    public function setLayout($view)
+    {
+        return $this->setView($view);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLayout()
+    {
+        return $this->getView();
+    }
+
+    /**
+     * @var array
+     */
+    protected $_children = array();
+
+    /**
+     * @param   string  $name
+     * @param   string  $view
+     * @param   array   $params
+     * @return  $this
+     */
+    public function setChild($name, $view, array $params = array())
+    {
+        $this->_children[$name] = FrontController::get('template_engine')
+                                        ->getNewTemplate( $view, $params);
+        return $this;
+    }
+
+    /**
+     * @param   string  $name
+     * @param   string  $content
+     * @return  $this
+     */
+    public function setChildAsString($name, $content)
+    {
+        $this->_children[$name] = $content;
+        return $this;
+    }
+
+    /**
+     * @param   string  $name
+     * @return  mixed
+     */
+    public function getChild($name)
+    {
+        return ($this->hasChild($name) ? $this->_children[$name] : null);
+    }
+
+    /**
+     * @param   string  $name
+     * @return  bool
+     */
+    public function hasChild($name)
+    {
+        return (bool) isset($this->_children[$name]);
+    }
+
+    /**
+     * Build the global layout with all children contents
+     *
+     * @param   array   $params     An array of the parameters passed for the view parsing
+     * @return  string  Returns the view file content rendering
+     */
+    public function renderLayout(array $params = array())
+    {
+        $params = array_merge($this->getParams(), $params);
+
+        $children = array();
+        foreach ($this->_children as $name=>$item) {
+            if (Helper::classImplements($item, AppKernel::getApi('template'))) {
+                $children[$name] = $item->render();
+            } else {
+                $children[$name] = $item;
+            }
+        }
+        $params = array_merge($params, $children);
+        $params['children'] = $children;
+
+        return $this->render($this->getView(), $params);
+    }
+
 }
 
 // Endfile

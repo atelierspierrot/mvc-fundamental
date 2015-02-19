@@ -32,6 +32,7 @@ use \MVCFundamental\Commons\ServiceContainerProviderTrait;
 use \MVCFundamental\Commons\Helper;
 use \Patterns\Traits\OptionableTrait;
 use \Patterns\Traits\SingletonTrait;
+use \Library\Helper\Directory as DirectoryHelper;
 
 /**
  * The default FrontController
@@ -119,81 +120,16 @@ class FrontController
         return $this;
     }
 
-// -------------------------------
-// ServiceContainerProviderInterface
-// -------------------------------
-
     /**
-     * This must allow some shortcuts to access a service
-     *
-     * @param   string  $name
-     * @param   array   $arguments
-     * @return  mixed
+     * @param string $mode
+     * @return bool
      */
-    public function __call($name, array $arguments)
+    public function isMode($mode)
     {
-        return self::__callStatic($name, $arguments);
-    }
-
-    /**
-     * This must allow some shortcuts to access a service
-     *
-     * @param   string  $name
-     * @param   array   $arguments
-     * @return  mixed
-     */
-    public static function __callStatic($name, array $arguments)
-    {
-        // getNew('name')
-        if ($name=='getNew') {
-            $service_name = isset($arguments[0]) ? $arguments[0] : null;
-            array_shift($arguments);
-            if (!empty($service_name)) {
-                return AppKernel::getInstance()
-                    ->unsetService($service_name)
-                    ->getService($service_name, $arguments);
-            }
-            return null;
-
-        // get('name') or getName()
-        } elseif (substr($name, 0, 3)=='get') {
-            if (strlen($name) > 3) {
-                $service_name = substr($name, 3);
-            } else {
-                $service_name = isset($arguments[0]) ? $arguments[0] : null;
-                array_shift($arguments);
-            }
-            if (!empty($service_name)) {
-                return AppKernel::getInstance()->getService($service_name, $arguments);
-            }
-            return null;
-
-            // set('name', $obj) or setName($obj)
-        } elseif (substr($name, 0, 3)=='set') {
-            if (strlen($name) > 3) {
-                $service_name       = substr($name, 3);
-                $service_callback   = isset($arguments[0]) ? $arguments[0] : null;
-                $service_overwrite  = isset($arguments[1]) ? $arguments[1] : null;
-            } else {
-                $service_name       = isset($arguments[0]) ? $arguments[0] : null;
-                $service_callback   = isset($arguments[1]) ? $arguments[1] : null;
-                $service_overwrite  = isset($arguments[2]) ? $arguments[2] : null;
-            }
-            if (!empty($service_name) && !empty($service_callback)) {
-                if (!empty($service_overwrite)) {
-                    AppKernel::getInstance()->setService(
-                        $service_name, $service_callback, $service_overwrite
-                    );
-                } else {
-                    AppKernel::getInstance()->setService(
-                        $service_name, $service_callback
-                    );
-                }
-            }
-            return self::getInstance();
-
+        if (!isset($this->_options['mode']) || !in_array($this->_options['mode'], array('dev', 'test', 'production'))) {
+            $this->_options['mode'] = 'production';
         }
-        return null;
+        return (strtolower($mode)==$this->_options['mode']);
     }
 
 // -------------------------------

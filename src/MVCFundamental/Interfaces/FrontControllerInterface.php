@@ -34,30 +34,10 @@ interface FrontControllerInterface
 {
 
     /**
-     * This must allow some shortcuts to access a service
-     *
-     * Usage:
-     *
-     *      $obj->getRequest() == $obj->getService('request')
-     *
-     * @param   string  $name
-     * @param   array   $arguments
-     * @return  mixed
+     * @param string $mode
+     * @return bool
      */
-    public function __call($name, array $arguments);
-
-    /**
-     * This must allow some shortcuts to access a service
-     *
-     * Usage:
-     *
-     *      $obj::getRequest() == $obj::getInstance()->getService('request')
-     *
-     * @param   string  $name
-     * @param   array   $arguments
-     * @return  mixed
-     */
-    public static function __callStatic($name, array $arguments);
+    public function isMode($mode);
 
     /**
      * @return void
