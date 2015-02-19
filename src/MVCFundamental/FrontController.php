@@ -77,7 +77,7 @@ class FrontController
         'default_layout_class'      => '\MVCFundamental\Commons\DefaultLayout',
         // default error messages
         '500_error_info'            => 'An internal error occurred :(',
-        '404_error_info'            => 'The request page can not be found :(',
+        '404_error_info'            => 'The requested page cannot be found :(',
         '403_error_info'            => 'Access to this page is forbidden :(',
         // app dev
         'mode'                      => 'production', // dev , test , production

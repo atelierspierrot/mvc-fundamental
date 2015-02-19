@@ -49,7 +49,7 @@ See the [options](#app-options) section below for a full review of possible
 options.
 
 The front controller creates an `AppKernel` instance to handle all the app
-core logic such a dependencies container, the error management etc. Some 
+core logic such as a dependencies container, the error management etc. Some 
 shortcut aliases are defined in the front controller itself to let you 
 retrieve a dependency using:
 
@@ -78,11 +78,11 @@ To define a route, you can use:
 // direct callback
 $app->addRoute('/my-route', function(){ return 'This is my route content';  })
 
-// to use the controller, write
+// to use the front controller in your callback, write
 $app->addRoute('/my-route', function() use ($app){ return 'This is my route content';  })
 
 // a controller's method - this will try to call MycontrollerController::methodAction()
-$app->addRoute('/my-route', array( mycontroller , method ))
+$app->addRoute('/my-route', array( 'mycontroller' , 'method' ))
 
 // a method of the default controller if so
 $app->addRoute('/my-route', 'method')
@@ -123,17 +123,17 @@ $app->addRoute('/my-route/{name}/{id:\d+}', function($id, $name){
 })
 ```
 
-You can always use the three arguments below if necessary:
+You can always use the arguments below if necessary:
 
--   the `FrontController` itself as `\MVCFundamental\Interfaces\FrontControllerInterface $app`
--   the `Request` as `\MVCFundamental\Interfaces\RequestInterface $request`
--   the `Response` as `\MVCFundamental\Interfaces\ResponseInterface $response`
--   the `TemplateEngine` as `\MVCFundamental\Interfaces\TemplateEngineInterface $template_engine`
+-   the `FrontController` itself as `\MVCFundamental\Interfaces\FrontControllerInterface $arg`
+-   the `Request` as `\MVCFundamental\Interfaces\RequestInterface $arg`
+-   the `Response` as `\MVCFundamental\Interfaces\ResponseInterface $arg`
+-   the `TemplateEngine` as `\MVCFundamental\Interfaces\TemplateEngineInterface $arg`
 -   a `data` array with all request arguments as `array $data`
 
 ```php
 $app->addRoute('/my-route', 
-    function( RequestInterface $request, ResponseInterface $response, FrontControllerInterface $app ){
+    function( RequestInterface $arg1, ResponseInterface $arg2, FrontControllerInterface $app ){
         // ....
         return "Hello world";  
     }
@@ -178,7 +178,7 @@ $app->redirect( $route, $follow = false ) : string
 ### Templating system
 
 The templates construction is handled by the `TemplateEngine` object that creates and aggregates
-some instances of `Template` and `Layout`.
+some instances of `Template` and `Layout` objects.
 
 ```php
 $template_engine = $app->get( 'template_engine' ) : object
@@ -190,12 +190,12 @@ $new_layout = $template_engine->getNewLayout( $layout_file , array $arguments , 
 
 The template engine works in couple with two kind of objects: the simple `Template` and
 the `Layout`. A `Template` is a simple view file included with parameters while a `Layout`
-is a kind of "full page" canvas handling predefined page parts, its `child` which can default
+is a kind of "full page" canvas handling predefined page parts, its `child`, which can default
 to a specific template file, and can be overwritten in the layout object.
 
 ### Error & exceptions
 
-The package embeds a (quite) full set of custom exceptions in the `MVCFundamental\Exceptions`
+The package embeds a (quite) full set of custom exceptions in the `\MVCFundamental\Exceptions`
 namespace and an internal handler to handle them. Try to always use one of these
 objects when you throw an exception. If you have a doubt, a shortcut can be used writing:
 
@@ -244,6 +244,17 @@ $options = array(
     // name of the default controller's action
     'default_action_name'       => 'index',
 
+    // the default template file
+    // you can use it with $template_engine->renderDefault()
+    'default_template'          => 'default.php',
+    
+    // the default layout view file
+    'default_layout'            => 'layout.php',
+    
+    // the default layout class
+    // you can use it with $template_engine->getgetDefaultLayout()
+    'default_layout_class'      => '\MVCFundamental\Commons\DefaultLayout',
+
     // the default response content type
     'default_content_type'      => 'html',
 
@@ -255,7 +266,7 @@ $options = array(
 
     // the errors messages
     '500_error_info'            => 'An internal error occurred :(',
-    '404_error_info'            => 'The request page can not be found :(',
+    '404_error_info'            => 'The requested page cannot be found :(',
     '403_error_info'            => 'Access to this page is forbidden :(',
 
     // set to `true` to transform errors in exceptions (with app rendering)
@@ -266,9 +277,11 @@ $options = array(
     // this will fallback to a system temporary directory
     'temp_dir'                  => dirname($_SERVER['SCRIPT_FILENAME']).'/tmp/',
 
-    // application logger system
-    'minimum_log_level'         => null, // one of the \Library\Logger levels
-    'app_logger'                => 'Library\Logger', // must implement PSR\Logger\Interface
+    // application logger system:
+        // one of the \Library\Logger levels
+    'minimum_log_level'         => null,
+        // must implement PSR\Logger\Interface
+    'app_logger'                => 'Library\Logger',
 
 );
 ```
@@ -289,8 +302,8 @@ More, any controller must implement the `\MVCFundamental\Interfaces\ControllerIn
 and the router must handle a collection of routes implementing the `\MVCFundamental\Interfaces\RouteInterface`.
 
 The template engine can handle some *templates* which must implement the 
-`MVCFundamental\Interfaces\TemplateInterface` and some *layouts* which must
-implement the `MVCFundamental\Interfaces\LayoutInterface`.
+`\MVCFundamental\Interfaces\TemplateInterface` and some *layouts* which must
+implement the `\MVCFundamental\Interfaces\LayoutInterface`.
 
 They all default to their implementation in the `\MVCFundamental\Basic` namespace
 but you can overwrite all of them.
