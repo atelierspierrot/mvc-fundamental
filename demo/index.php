@@ -42,6 +42,8 @@ $classLoader->register();
 // front controller creation
 $fctrl = \MVCFundamental\FrontController::getInstance(array(
 
+    'mode'                      => 'dev',
+
     'default_controller_name'   => '\Demo\DefaultController',
 
     'controller_locator'        => function($name) {
@@ -73,6 +75,7 @@ $fctrl
     <li><a href="{$req}hello/your-name/myview">/hello/{name}/myview</a> : a controller action loading a "view" file with a "name" argument</li>
     <li><a href="{$req}hello/your-name/test">/hello/{name}/test</a> : a custom action of a custom controller with a "name" argument</li>
     <li><a href="{$req}hello/your-name/id/4">/hello/{name}/id/{id}</a> : a route with a "name" string argument and a "id" integer one</li>
+    <li><a href="{$req}hello/your-name/id/4/alt">/hello/{name}/id/{id}/alt</a> : a route with a "name" string argument and a "id" integer one fetched in random order</li>
 </ul>
 <p>Tests of internal features:</p>
 <ul>
@@ -134,6 +137,9 @@ MESAGE
     // a simple test route with a 'name' argument as string and an 'id' argument as integer
     ->addRoute('/hello/{name}/id/{id:\d+}', 'args')
 
+    // a simple test route with a 'name' argument as string and an 'id' argument as integer in random order
+    ->addRoute('/hello/{name}/id/{id:\d+}/alt', 'altargs')
+
     // a simple test route with a 'name' argument calling an array like (controller, action)
     ->addRoute('/hello/{name}/test', array('\Demo\TestController', 'test'))
 
@@ -177,12 +183,10 @@ MESAGE
 
     // a "debug" route to see a dump of the front controller
     ->addRoute('/debug', function () use ($fctrl) {
-        header('Content-Type: text/plain');
-        echo PHP_EOL;
-        var_export(\MVCFundamental\AppKernel::getInstance());
-        exit();
+        \MVCFundamental\Commons\Helper::debug(
+            \MVCFundamental\AppKernel::getInstance()
+        );
     })
-
 
     // app run
     ->run()

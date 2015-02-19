@@ -43,6 +43,11 @@ class DefaultController
         return 'Hello '.$name.' | I received ID='.$id;
     }
 
+    public function altargsAction($id, $name)
+    {
+        return 'Hello '.$name.' | I received ID='.$id;
+    }
+
     public function myviewAction($name)
     {
         return array(self::$views_dir.'test.php', array(
