@@ -70,7 +70,9 @@ $fctrl
         $req = $fctrl->get('request')->getUrl();
         return $fctrl->get('template_engine')->renderDefault(
             <<<MESAGE
-<p><strong>Welcome in the test!</strong></p>
+<p><strong>Welcome in the demo!</strong> You will find below various routes to test the package.</p>
+<p>To learn how these routes are defined and a quick "how-to", have a look in the source code of file <code>demo/index.php</code>.</p>
+<p>To get last source updates or report a bug, see <a href="http://github.com/atelierspierrot/mvc-fundamental">the "atelierspierrot/mvc-fundamental" repository</a>.</p>
 <p>Calls of various routes and callbacks:</p>
 <ul>
     <li><a href="{$req}hello">/hello</a> : simple closure callback with no argument</li>
