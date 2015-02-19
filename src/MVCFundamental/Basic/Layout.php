@@ -25,6 +25,9 @@ namespace MVCFundamental\Basic;
 use \MVCFundamental\Interfaces\LayoutInterface;
 use \MVCFundamental\Commons\ViewFileTrait;
 use \Patterns\Traits\OptionableTrait;
+use \MVCFundamental\FrontController;
+use \MVCFundamental\AppKernel;
+use \MVCFundamental\Commons\Helper;
 
 /**
  * Class Layout
