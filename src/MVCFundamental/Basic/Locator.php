@@ -106,6 +106,16 @@ class Locator
         if (file_exists($name)) {
             return realpath($name);
         }
+
+        // a user defined locator
+        $locator = FrontController::getInstance()->getOption('view_file_locator');
+        if (!is_null($locator) && is_callable($locator)) {
+            $result = call_user_func($locator, $name);
+            if (!empty($result) && file_exists($result)) {
+                return $result;
+            }
+        }
+
         return null;
     }
 

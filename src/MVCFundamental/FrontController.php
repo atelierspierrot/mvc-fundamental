@@ -51,7 +51,8 @@ class FrontController
     /**
      * @var array
      */
-    protected $_defaults = array(
+    protected static $_defaults = array(
+        // API
         'router'                    => '\MVCFundamental\Basic\Router',
         'route_item'                => '\MVCFundamental\Basic\Route',
         'response'                  => '\MVCFundamental\Basic\Response',
@@ -62,18 +63,24 @@ class FrontController
         'locator'                   => '\MVCFundamental\Basic\Locator',
         'error_controller'          => '\MVCFundamental\Basic\ErrorController',
         'controller_locator'        => null,
+        'view_file_locator'         => null,
         'controller_name_finder'    => '%sController',
         'action_name_finder'        => '%sAction',
         'default_controller_name'   => 'default',
         'default_action_name'       => 'index',
+        // defaults
         'default_content_type'      => 'html',
         'default_charset'           => 'utf8',
-        'convert_error_to_exception'=> false,
         'routes'                    => array(),
         // default error messages
         '500_error_info'            => 'An internal error occurred :(',
         '404_error_info'            => 'The request page can not be found :(',
         '403_error_info'            => 'Access to this page is forbidden :(',
+        // app dev
+        'mode'                      => 'production', // dev , test , production
+        'convert_error_to_exception'=> false,
+        'minimum_log_level'         => null, // one of the \Library\Logger levels
+        'app_logger'                => 'Library\Logger',
     );
 
 // -------------------------------
@@ -83,7 +90,7 @@ class FrontController
     /**
      * @var bool
      */
-    protected $_is_booted = false;
+    protected static $_is_booted = false;
 
     /**
      * @param array $options
@@ -91,7 +98,7 @@ class FrontController
     public function __construct(array $options = array())
     {
         $this
-            ->setOptions($this->_defaults)
+            ->setOptions(self::$_defaults)
             ->setOptions($options)
             ->boot()
         ;
@@ -102,7 +109,16 @@ class FrontController
      */
     public function boot()
     {
-        if (!$this->_is_booted) {
+        if (!self::$_is_booted) {
+            if (empty($this->_options['temp_dir'])) {
+                $this->_options['temp_dir'] =
+                    DirectoryHelper::slashDirname(dirname($_SERVER['SCRIPT_FILENAME'])).'tmp';
+            }
+
+            if ($this->isMode('production')) {
+                $this->setOption('convert_error_to_exception', true);
+            }
+
             AppKernel::boot($this);
 
             $charset = $this->get('response')->getCharset();
@@ -119,7 +135,7 @@ class FrontController
                 $this->get('router')->setRoutes($routes);
             }
 
-            $this->_is_booted = true;
+            self::$_is_booted = true;
         }
         return $this;
     }
