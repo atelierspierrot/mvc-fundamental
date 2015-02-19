@@ -157,6 +157,12 @@ Inside a callback, you can:
 $app->render( $view_file, array $params = array() ) : string
 ```
 
+-   use a layout calling:
+
+```php
+$app->getNew('layout' , $view_file, array $options = array() ) : string
+```
+
 -   "include" another controller's method using:
 
 ```php
