@@ -1,4 +1,7 @@
 <?php
+/**
+ * @see <http://github.com/atelierspierrot/mvc-fundamental>.
+ */
 
 if (!isset($title))     $title      = '';
 if (!isset($page_title))$page_title = $title;

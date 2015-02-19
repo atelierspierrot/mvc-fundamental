@@ -1,4 +1,8 @@
-<small>[<?php echo __FILE__; ?>]</small>
+<?php
+/**
+ * @see <http://github.com/atelierspierrot/mvc-fundamental>.
+ */
+?><small>[<?php echo __FILE__; ?>]</small>
 
 <h1>HTML Ipsum Presents</h1>
 

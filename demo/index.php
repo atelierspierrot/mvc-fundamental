@@ -1,4 +1,7 @@
 <?php
+/**
+ * @see <http://github.com/atelierspierrot/mvc-fundamental>.
+ */
 
 // ----------------------------------
 // Env setup

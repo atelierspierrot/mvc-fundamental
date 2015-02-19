@@ -1,4 +1,7 @@
 <?php
+/**
+ * @see <http://github.com/atelierspierrot/mvc-fundamental>.
+ */
 
 $req = $app->get('request')->getUrl();
 $req = str_replace('/form', '', $req);
