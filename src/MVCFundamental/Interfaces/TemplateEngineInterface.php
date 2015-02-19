@@ -75,6 +75,12 @@ interface TemplateEngineInterface
      */
     public function renderDefault($content, $title = null, array $params = array());
 
+    /**
+     * @param array $arguments
+     * @return mixed
+     */
+    public function getDefaultLayout(array $arguments = array());
+
 }
 
 // Endfile

@@ -22,6 +22,7 @@
 
 namespace MVCFundamental\Basic;
 
+use \MVCFundamental\AppKernel;
 use \MVCFundamental\FrontController;
 use \MVCFundamental\Commons\Helper;
 use \MVCFundamental\Interfaces\TemplateEngineInterface;
@@ -96,12 +97,28 @@ class TemplateEngine
      */
     public function renderDefault($content, $title = null, array $params = array())
     {
-        $template = __DIR__.'/../Resources/templates/default.php';
+        $template = FrontController::getInstance()->getOption('default_template');
         $view_file = $this->getTemplate($template);
         return $this->renderTemplate($view_file, array_merge($params, array(
             'title'     => $title,
             'content'   => $content
         )));
+    }
+
+    /**
+     * @param array $arguments
+     * @return mixed
+     */
+    public function getDefaultLayout(array $arguments = array())
+    {
+        $view   = FrontController::getInstance()->getOption('default_layout');
+        $class  = FrontController::getInstance()->getOption('default_layout_class');
+        if (class_exists($class) && Helper::classImplements($class, AppKernel::getApi('layout'))) {
+            $layout = new $class($arguments);
+            $layout->setLayout($view);
+            return $layout;
+        }
+        return null;
     }
 
 }

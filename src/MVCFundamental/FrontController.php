@@ -72,6 +72,9 @@ class FrontController
         'default_content_type'      => 'html',
         'default_charset'           => 'utf8',
         'routes'                    => array(),
+        'default_template'          => 'default.php',
+        'default_layout'            => 'layout.php',
+        'default_layout_class'      => '\MVCFundamental\Commons\DefaultLayout',
         // default error messages
         '500_error_info'            => 'An internal error occurred :(',
         '404_error_info'            => 'The request page can not be found :(',
