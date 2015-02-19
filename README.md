@@ -58,6 +58,13 @@ $route = $app->get( 'router' );
 $route = $app->set( 'request' , new Request );
 ```
 
+Once your configuration and routing are defined, just call the `run()` method
+to let the front controller distribute the request:
+
+```php
+$app->run();
+```
+
 ### Routing
 
 Your real application logic resides in the *routes* you define and corresponding
@@ -199,6 +206,18 @@ build a custom application:
 ```php
 $options = array(
 
+    // the application mode in "dev , test , production"
+    // you can test it with $app->isMode('dev')
+    'mode'                      => 'production',
+
+    // set to `true` to transform errors in exceptions (with app rendering)
+    // this is automatically enabled in 'production' mode
+    'convert_error_to_exception'=> false,
+
+    // a temporary directory - the server user MUST have writing rights
+    // this will fallback to a system temporary directory
+    'temp_dir'                  => dirname($_SERVER['SCRIPT_FILENAME']).'/tmp/',
+
     // all these will overwrite the default app objects
     'router'                    => '\MVCFundamental\Basic\Router',
     'route_item'                => '\MVCFundamental\Basic\Route',
@@ -212,6 +231,9 @@ $options = array(
 
     // this can be a callback to retrieve a controller class: function ($name) {}
     'controller_locator'        => null,
+
+    // this can be a callback to retrieve a view file: function ($view_name) {}
+    'view_file_locator'         => null,
 
     // the controllers name mask
     'controller_name_finder'    => '%sController',
@@ -231,11 +253,17 @@ $options = array(
     // the default response charset
     'default_charset'           => 'utf8',
 
-    // set to `true` to transform errors in exceptions (with app rendering)
-    'convert_error_to_exception'=> false,
-
     // the routes definition array
     'routes'                    => array(),
+
+    // the errors messages
+    '500_error_info'            => 'An internal error occurred :(',
+    '404_error_info'            => 'The request page can not be found :(',
+    '403_error_info'            => 'Access to this page is forbidden :(',
+
+    // application logger system
+    'minimum_log_level'         => null, // one of the \Library\Logger levels
+    'app_logger'                => 'Library\Logger', // must implement PSR\Logger\Interface
 
 );
 ```
