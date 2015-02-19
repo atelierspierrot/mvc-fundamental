@@ -50,14 +50,12 @@ trait ViewFileTrait
         if (empty($view)) {
             $view = $this->getView();
         }
-        if (empty($params)) {
-            $params = $this->getParams();
-        }
-        $_view = $this->getTemplate($view);
+        $_params    = array_merge($this->getParams(), $params);
+        $_view      = $this->getTemplate($view);
         if ($_view && @file_exists($_view)) {
             extract($this->getDefaultViewParams(), EXTR_OVERWRITE);
-            if (!empty($params)) {
-                extract($params, EXTR_OVERWRITE);
+            if (!empty($_params)) {
+                extract($_params, EXTR_OVERWRITE);
             }
             ob_start();
             include $_view;
