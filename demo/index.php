@@ -59,6 +59,9 @@ $fctrl = \MVCFundamental\FrontController::getInstance(array(
 
 ));
 
+// test a log message
+\MVCFundamental\AppKernel::log('info', 'Test log for request '.$fctrl->get('request')->getUri());
+
 // routing definitions
 $fctrl
 
@@ -110,7 +113,11 @@ $fctrl
     <li><a href="{$req}form">/form</a> : test form page itself</li>
     <li><a href="{$req}saveform">/saveform</a> : the submission page, that should throw an error while calling it directly</li>
 </ul>
-<p>At any time, use the <a href="{$req}debug">/debug</a> route to see a dump of the front controller.</p>
+<p>Use the following links to debug:</p>
+<ul>
+    <li><a href="{$req}debug">/debug</a> : route to see a dump of the front controller</li>
+    <li><a href="{$req}logs">/logs</a> : route to see log files contents</li>
+</ul>
 MESAGE
             , 'Hello'
         );
@@ -190,6 +197,20 @@ MESAGE
         \MVCFundamental\Commons\Helper::debug(
             \MVCFundamental\AppKernel::getInstance()
         );
+    })
+
+    // a "log" route to see logs
+    ->addRoute('/logs', function () use ($fctrl) {
+        $log_dir = $fctrl->getOption('temp_dir');
+        $dh  = opendir($log_dir);
+        $logs = array();
+        while (false !== ($filename = readdir($dh))) {
+            if (substr($filename, -4)=='.log') {
+                $logs[] = '##### '.$filename;
+                $logs[] = file_get_contents($log_dir.'/'.$filename);
+            }
+        }
+        call_user_func_array(array('MVCFundamental\Commons\Helper', 'debug'), $logs);
     })
 
     // app run
