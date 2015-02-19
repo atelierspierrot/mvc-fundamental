@@ -26,6 +26,8 @@ namespace MVCFundamental\Interfaces;
  * Interface ControllerInterface
  *
  * This is kept for API verifications
+ *
+ * @api
  */
 interface ControllerInterface
 {

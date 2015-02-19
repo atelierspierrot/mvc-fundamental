@@ -24,6 +24,8 @@ namespace MVCFundamental\Interfaces;
 
 /**
  * Interface RouteInterface
+ *
+ * @api
  */
 interface RouteInterface
 {

@@ -24,6 +24,8 @@ namespace MVCFundamental\Interfaces;
 
 /**
  * Interface LocatorInterface
+ *
+ * @api
  */
 interface LocatorInterface
 {

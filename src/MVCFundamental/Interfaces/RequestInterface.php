@@ -26,6 +26,8 @@ use \Patterns\Interfaces\RequestInterface as BaseRequestInterface;
 
 /**
  * Interface RequestInterface
+ *
+ * @api
  */
 interface RequestInterface
     extends BaseRequestInterface

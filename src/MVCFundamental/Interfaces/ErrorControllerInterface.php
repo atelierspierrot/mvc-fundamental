@@ -24,6 +24,8 @@ namespace MVCFundamental\Interfaces;
 
 /**
  * Interface ErrorControllerInterface
+ *
+ * @api
  */
 interface ErrorControllerInterface
     extends ControllerInterface

@@ -26,6 +26,8 @@ use \Patterns\Interfaces\ResponseInterface as BaseResponseInterface;
 
 /**
  * Interface ResponseInterface
+ *
+ * @api
  */
 interface ResponseInterface
     extends BaseResponseInterface

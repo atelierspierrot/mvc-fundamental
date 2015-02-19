@@ -24,6 +24,8 @@ namespace MVCFundamental\Interfaces;
 
 /**
  * Interface TemplateInterface
+ *
+ * @api
  */
 interface TemplateInterface
 {

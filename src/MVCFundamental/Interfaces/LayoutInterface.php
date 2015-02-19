@@ -27,6 +27,8 @@ use \Patterns\Interfaces\OptionableInterface;
 
 /**
  * Interface LayoutInterface
+ *
+ * @api
  */
 interface LayoutInterface
     extends ViewInterface, OptionableInterface
