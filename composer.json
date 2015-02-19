@@ -16,9 +16,9 @@
     }],
     "require": {
         "php": ">=5.4.0",
-        "psr/log": "dev-master",
-        "atelierspierrot/patterns": "dev-master",
-        "atelierspierrot/library": "dev-master"
+        "psr/log": "1.0.*",
+        "atelierspierrot/patterns": "1.0.*",
+        "atelierspierrot/library": "1.1.*"
     },
     "require-dev": {
         "sami/sami": "2.*",
