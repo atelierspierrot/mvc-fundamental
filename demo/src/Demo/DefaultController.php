@@ -94,6 +94,32 @@ class DefaultController
             ->setChild('content', self::$views_dir.'lorem_ipsum_content.php')
             ->renderLayout($params);
     }
+
+    public function defaultLayoutAction(TemplateEngineInterface $template_engine, FrontControllerInterface $app)
+    {
+        $layout = $template_engine->getDefaultLayout();
+        $req    = $app->get('request')->getBaseUrl();
+        $layout
+            ->addParam('title', 'My test layout')
+            ->addParam('breadcrumb', array(
+                'home'=>$req.'/',
+                'item 1'=>'#',
+                'item 2'=>'#',
+            ))
+            ->setChildParam('content', 'title', 'Global test content')
+            ->setChildParam('content', 'content',
+                $template_engine->renderTemplate(self::$views_dir.'lorem_ipsum_content.php'))
+            ->setChildParam('aside', 'title', 'Test aside column')
+            ->setChildParam('aside', 'content',
+                $template_engine->renderTemplate(self::$views_dir.'left_block.php'))
+            ->setChildParam('extra', 'title', 'Test extra column')
+            ->setChildParam('extra', 'content',
+                $template_engine->renderTemplate(self::$views_dir.'left_block.php'))
+            ->setChildParam('footer', 'content', 'My test footer info ...')
+            ;
+        return $layout->renderLayout();
+    }
+
 }
 
 // Endfile

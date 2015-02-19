@@ -94,6 +94,7 @@ $fctrl
 <ul>
     <li><a href="{$req}/compose_parts">/compose_parts</a> : content composed by aggregating different parts</li>
     <li><a href="{$req}/compose_layout">/compose_layout</a> : content composed using a Layout object</li>
+    <li><a href="{$req}/default_layout">/default_layout</a> : test of the default layout (with lorem ipsum contents)</li>
 </ul>
 <p>Tests of internal error handling:</p>
 <ul>
