@@ -28,6 +28,7 @@ use \MVCFundamental\Exception\ErrorException;
 use \MVCFundamental\Exception\NotFoundException;
 use \MVCFundamental\Exception\InternalServerErrorException;
 use \MVCFundamental\Exception\AccessForbiddenException;
+use \MVCFundamental\Commons\ServiceContainerProviderTrait;
 use \MVCFundamental\Commons\Helper;
 use \Patterns\Traits\OptionableTrait;
 use \Patterns\Traits\SingletonTrait;
@@ -40,9 +41,11 @@ class FrontController
 {
 
     /**
-     * This class inherits from \Patterns\Traits\OptionableTrait and \Patterns\Traits\SingletonTrait
+     * This class inherits from \Patterns\Traits\OptionableTrait
+     * This class inherits from \Patterns\Traits\SingletonTrait
+     * This class inherits from \MVCFundamental\Commons\ServiceContainerProviderTrait
      */
-    use OptionableTrait, SingletonTrait;
+    use OptionableTrait, SingletonTrait, ServiceContainerProviderTrait;
 
     /**
      * @var array

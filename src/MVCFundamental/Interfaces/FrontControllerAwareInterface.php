@@ -20,36 +20,23 @@
  * <http://github.com/atelierspierrot/mvc-fundamental>.
  */
 
-namespace MVCFundamental\Commons;
-
-use \MVCFundamental\Interfaces\FrontControllerInterface;
+namespace MVCFundamental\Interfaces;
 
 /**
- * FrontControllerAwareTrait
+ * FrontControllerAwareInterface
  */
-trait FrontControllerAwareTrait
+interface FrontControllerAwareInterface
 {
-
-    /**
-     * @var \MVCFundamental\Interfaces\FrontControllerInterface
-     */
-    protected static $_front_controller;
 
     /**
      * @param \MVCFundamental\Interfaces\FrontControllerInterface $app
      */
-    public static function setFrontController(FrontControllerInterface $app)
-    {
-        self::$_front_controller = $app;
-    }
+    public static function setFrontController(FrontControllerInterface $app);
 
     /**
      * @return \MVCFundamental\Interfaces\FrontControllerInterface
      */
-    public static function getFrontController()
-    {
-        return self::$_front_controller;
-    }
+    public static function getFrontController();
 
 }
 

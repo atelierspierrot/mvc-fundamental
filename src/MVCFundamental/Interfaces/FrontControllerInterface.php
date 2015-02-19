@@ -30,7 +30,7 @@ use \Patterns\Interfaces\OptionableInterface;
  * Interface FrontControllerInterface
  */
 interface FrontControllerInterface
-    extends SingletonInterface, OptionableInterface
+    extends SingletonInterface, OptionableInterface, ServiceContainerProviderInterface
 {
 
     /**

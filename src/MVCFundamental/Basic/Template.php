@@ -23,7 +23,7 @@
 namespace MVCFundamental\Basic;
 
 use \MVCFundamental\Interfaces\TemplateInterface;
-use \MVCFundamental\Commons\TemplateTrait;
+use \MVCFundamental\Commons\ViewFileTrait;
 
 /**
  * Class Template
@@ -33,9 +33,9 @@ class Template
 {
 
     /**
-     * This class inherits from \MVCFundamental\Commons\TemplateTrait
+     * This trait inherits from \MVCFundamental\Commons\ViewFileTrait
      */
-    use TemplateTrait;
+    use ViewFileTrait;
 
     /**
      * @param null|string $view_file

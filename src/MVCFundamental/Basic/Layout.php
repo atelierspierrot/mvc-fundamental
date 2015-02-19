@@ -23,7 +23,8 @@
 namespace MVCFundamental\Basic;
 
 use \MVCFundamental\Interfaces\LayoutInterface;
-use \MVCFundamental\Commons\LayoutTrait;
+use \MVCFundamental\Commons\ViewFileTrait;
+use \Patterns\Traits\OptionableTrait;
 
 /**
  * Class Layout
@@ -33,9 +34,9 @@ class Layout
 {
 
     /**
-     * This class inherits from \MVCFundamental\Commons\LayoutTrait
+     * This trait inherits from \MVCFundamental\Commons\TemplateTrait and \Patterns\Traits\OptionableTrait
      */
-    use LayoutTrait;
+    use ViewFileTrait, OptionableTrait;
 
     /**
      * @var array

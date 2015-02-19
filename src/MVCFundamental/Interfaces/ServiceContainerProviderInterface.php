@@ -23,44 +23,39 @@
 
 namespace MVCFundamental\Interfaces;
 
-use \Patterns\Interfaces\SingletonInterface;
-
 /**
- * Interface AppKernelInterface
+ * Interface ServiceContainerProviderInterface
  */
-interface AppKernelInterface
-    extends SingletonInterface, ServiceContainerProviderInterface, FrontControllerAwareInterface
+interface ServiceContainerProviderInterface
 {
 
     /**
-     * @param FrontControllerInterface $app
-     * @return mixed
+     * This must allow some shortcuts to access a service
+     *
+     * Usage:
+     *
+     *      $obj->get('request') == $obj->getService('request')
+     *      $obj->getRequest() == $obj->getService('request')
+     *
+     * @param   string  $name
+     * @param   array   $arguments
+     * @return  mixed
      */
-    public static function boot(FrontControllerInterface $app);
+    public function __call($name, array $arguments);
 
     /**
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     * @return void
+     * This must allow some shortcuts to access a service
+     *
+     * Usage:
+     *
+     *      $obj::get('request') == $obj::getInstance()->getService('request')
+     *      $obj::getRequest() == $obj::getInstance()->getService('request')
+     *
+     * @param   string  $name
+     * @param   array   $arguments
+     * @return  mixed
      */
-    public static function log($level, $message, array $context = array());
-
-    /**
-     * @param   \Exception $e
-     * @return  void
-     */
-    public static function handleException(\Exception $e);
-
-    /**
-     * @param   int     $errno
-     * @param   string  $errstr
-     * @param   string  $errfile
-     * @param   int     $errline
-     * @param   array   $errcontext
-     * @return  void
-     */
-    public static function handleError($errno = 0, $errstr = '', $errfile = '', $errline = 0, array $errcontext = array());
+    public static function __callStatic($name, array $arguments);
 
 }
 

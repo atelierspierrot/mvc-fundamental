@@ -27,9 +27,9 @@ use \MVCFundamental\Exception\Exception;
 use \Patterns\Traits\TemplateViewTrait;
 
 /**
- * TemplateTrait
+ * ViewFileTrait
  */
-trait TemplateTrait
+trait ViewFileTrait
 {
 
     /**

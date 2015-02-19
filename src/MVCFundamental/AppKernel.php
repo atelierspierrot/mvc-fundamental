@@ -22,11 +22,11 @@
 
 namespace MVCFundamental;
 
-use \MVCFundamental\Commons\FrontControllerAwareTrait;
 use \Patterns\Traits\SingletonTrait;
 use \MVCFundamental\Interfaces\FrontControllerInterface;
 use \MVCFundamental\Interfaces\AppKernelInterface;
 use \MVCFundamental\Exception\ErrorException;
+use \MVCFundamental\Commons\ServiceContainerProviderTrait;
 use \MVCFundamental\Commons\Helper;
 use \Patterns\Commons\Collection;
 
@@ -38,9 +38,10 @@ class AppKernel
 {
 
     /**
-     * This class inherits from \MVCFundamental\Commons\FrontControllerAwareTrait and \Patterns\Traits\SingletonTrait
+     * This class inherits from \Patterns\Traits\SingletonTrait
+     * This class inherits from \MVCFundamental\Commons\ServiceContainerProviderTrait
      */
-    use SingletonTrait, FrontControllerAwareTrait;
+    use SingletonTrait, ServiceContainerProviderTrait;
 
 // -------------------------
 // System environment
