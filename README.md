@@ -132,9 +132,12 @@ You can always use the three arguments below if necessary:
 -   a `data` array with all request arguments as `array $data`
 
 ```php
-$app->addRoute('/my-route', function($request, $response, $app){ 
-    return "Hello world";  
-})
+$app->addRoute('/my-route', 
+    function( RequestInterface $request, ResponseInterface $response, FrontControllerInterface $app ){
+        // ....
+        return "Hello world";  
+    }
+)
 ```
 
 ### Callback return
@@ -175,12 +178,14 @@ $app->redirect( $route, $follow = false ) : string
 ### Templating system
 
 The templates construction is handled by the `TemplateEngine` object that creates and aggregates
-some instances of `Template`.
+some instances of `Template` and `Layout`.
 
 ```php
 $template_engine = $app->get( 'template_engine' ) : object
 
-$new_template = $template_engine->renderTemplate( $view_file , array $arguments ) : string
+$new_template = $template_engine->getNewTemplate( $view_file , array $arguments ) : string
+
+$new_layout = $template_engine->getNewLayout( $layout_file , array $arguments , array $options ) : string
 ```
 
 The template engine works in couple with two kind of objects: the simple `Template` and
@@ -209,14 +214,6 @@ $options = array(
     // the application mode in "dev , test , production"
     // you can test it with $app->isMode('dev')
     'mode'                      => 'production',
-
-    // set to `true` to transform errors in exceptions (with app rendering)
-    // this is automatically enabled in 'production' mode
-    'convert_error_to_exception'=> false,
-
-    // a temporary directory - the server user MUST have writing rights
-    // this will fallback to a system temporary directory
-    'temp_dir'                  => dirname($_SERVER['SCRIPT_FILENAME']).'/tmp/',
 
     // all these will overwrite the default app objects
     'router'                    => '\MVCFundamental\Basic\Router',
@@ -261,6 +258,14 @@ $options = array(
     '404_error_info'            => 'The request page can not be found :(',
     '403_error_info'            => 'Access to this page is forbidden :(',
 
+    // set to `true` to transform errors in exceptions (with app rendering)
+    // this is automatically enabled in 'production' mode
+    'convert_error_to_exception'=> false,
+
+    // a temporary directory - the server user MUST have writing rights
+    // this will fallback to a system temporary directory
+    'temp_dir'                  => dirname($_SERVER['SCRIPT_FILENAME']).'/tmp/',
+
     // application logger system
     'minimum_log_level'         => null, // one of the \Library\Logger levels
     'app_logger'                => 'Library\Logger', // must implement PSR\Logger\Interface
@@ -297,11 +302,11 @@ but you can overwrite all of them.
 
 >    http://github.com/atelierspierrot/mvc-fundamental
 
->    Copyleft (ↄ) 2013-2015 Pierre Cassat and contributors
+>    Copyright (c) 2013-2015 Pierre Cassat and contributors
 
->    Licensed under the GPL Version 3 license.
+>    Licensed under the Apache License, Version 2.0.
 
->    http://opensource.org/licenses/GPL-3.0
+>    http://www.apache.org/licenses/LICENSE-2.0
 
 >    ----
 
