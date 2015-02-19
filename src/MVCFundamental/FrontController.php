@@ -70,6 +70,10 @@ class FrontController
         'default_charset'           => 'utf8',
         'convert_error_to_exception'=> false,
         'routes'                    => array(),
+        // default error messages
+        '500_error_info'            => 'An internal error occurred :(',
+        '404_error_info'            => 'The request page can not be found :(',
+        '403_error_info'            => 'Access to this page is forbidden :(',
     );
 
 // -------------------------------

@@ -40,10 +40,10 @@ class ErrorException
     {
         parent::__construct($message, $code, $severity, $filename, $lineno, $previous);
         try {
-            AppKernel::log(
-                $this->getMessage(), $code, array(
+            AppKernel::log('error',  $this->getMessage(), array(
+                'code'=>$code,
                 'exception'=>$this
-            ), 'error');
+            ));
         } catch (\Exception $e) {}
     }
 

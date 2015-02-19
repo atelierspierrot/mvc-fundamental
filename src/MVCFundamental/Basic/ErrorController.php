@@ -47,7 +47,7 @@ class ErrorController
             $this->notFoundError($e);
         } elseif ($e instanceof AccessForbiddenException) {
             $this->authorizationError($e);
-        } elseif ($e instanceof InternalServerErrorException) {
+        } elseif (FrontController::getInstance()->isMode('production')) {
             $this->fatalError($e);
         } else {
             $this->error($e);
@@ -80,13 +80,11 @@ class ErrorController
      */
     public function fatalError(\Exception $e)
     {
-        $title      = 'Internal server error';
-        $previous   = $e->getPrevious();
-        $message    = $this->_getExceptionMessage($e, true);
-        if ($previous) {
-            $message .= $this->_getExceptionMessage($previous, false);
-        }
-        $this->_render($message, $title);
+        $this->_render(
+            $this->_getProductionErrorMessage($e, 500),
+            'Internal server error',
+            HttpStatus::ERROR
+        );
     }
 
     /**
@@ -97,13 +95,11 @@ class ErrorController
      */
     public function notFoundError(\Exception $e)
     {
-        $title      = 'Page not found';
-        $errstr     = $e->getMessage();
-        $message    = <<<MESSAGE
-<p>The request page can not be found :(</p>
-<blockquote>{$errstr}</blockquote>
-MESSAGE;
-        $this->_render($message, $title, HttpStatus::NOT_FOUND);
+        $this->_render(
+            $this->_getProductionErrorMessage($e, 404),
+            'Page not found',
+            HttpStatus::NOT_FOUND
+        );
     }
 
     /**
@@ -114,13 +110,11 @@ MESSAGE;
      */
     public function authorizationError(\Exception $e)
     {
-        $title      = 'Access forbidden';
-        $errstr     = $e->getMessage();
-        $message    = <<<MESSAGE
-<p>Access to this page is forbidden :(</p>
-<blockquote>{$errstr}</blockquote>
-MESSAGE;
-        $this->_render($message, $title, HttpStatus::UNAUTHORIZED);
+        $this->_render(
+            $this->_getProductionErrorMessage($e, 403),
+            'Access forbidden',
+            HttpStatus::UNAUTHORIZED
+        );
     }
 
     /**
@@ -133,11 +127,25 @@ MESSAGE;
     {
         $content = FrontController::get('template_engine')
             ->renderDefault($content, $title, $params);
-        FrontController::getInstance()
-            ->set('response', new Response(
-                $content, $status, 'html', 'utf8'
-            ))
-            ->display();
+        $fctrl = FrontController::getInstance();
+        $fctrl->set('response', new Response(
+            $content, $status, 'html', 'utf8'
+        ));
+        $fctrl->display();
+    }
+
+    /**
+     * @param \Exception $e
+     * @param int $type
+     * @return string
+     */
+    protected function _getProductionErrorMessage(\Exception $e, $type = 500)
+    {
+        $content = '<p>'.FrontController::getInstance()->getOption($type.'_error_info').'</p>';
+        if (FrontController::getInstance()->isMode('dev')) {
+            $content .= '<blockquote>'.$e->getMessage().'</blockquote>';
+        }
+        return $content;
     }
 
     /**
@@ -155,12 +163,12 @@ MESSAGE;
         $type       = get_class($e);
         if ($primary) {
             $message    = <<<MESSAGE
-<p>An '{$type}' error occurred with the following message:</p>
+<p>A '{$type}' error occurred with the following message:</p>
 MESSAGE;
         } else {
             $message    = <<<MESSAGE
 <hr />
-<p>Additionally, an '{$type}' error occurred previously with the following message:</p>
+<p>Additionally, a '{$type}' error occurred previously with the following message:</p>
 MESSAGE;
         }
         $message    .= <<<MESSAGE
