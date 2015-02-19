@@ -65,6 +65,14 @@ interface LayoutInterface
 
     /**
      * @param   string  $name
+     * @param   string  $param_name
+     * @param   mixed   $param_value
+     * @return  $this
+     */
+    public function setChildParam($name, $param_name, $param_value);
+
+    /**
+     * @param   string  $name
      * @param   string  $content
      * @return  $this
      */
@@ -81,6 +89,13 @@ interface LayoutInterface
      * @return  bool
      */
     public function hasChild($name);
+
+    /**
+     * @param   string  $name
+     * @param   array   $params
+     * @return  string
+     */
+    public function renderChild($name, array $params = array());
 
     /**
      * Build the global layout with all children contents

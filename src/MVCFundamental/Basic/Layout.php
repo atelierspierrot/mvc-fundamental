@@ -22,6 +22,7 @@
 
 namespace MVCFundamental\Basic;
 
+use \MVCFundamental\Exception\ErrorException;
 use \MVCFundamental\Interfaces\LayoutInterface;
 use \MVCFundamental\Commons\ViewFileTrait;
 use \Patterns\Traits\OptionableTrait;
@@ -52,6 +53,7 @@ class Layout
     public function __construct(array $options = array())
     {
         $this->setOptions(array_merge($this->_defaults, $options));
+        $this->_init();
     }
 
     /**
@@ -60,6 +62,26 @@ class Layout
     public function __toString()
     {
         return $this->renderLayout();
+    }
+
+    /**
+     * Distribute object's options
+     * @return $this
+     */
+    protected function _init()
+    {
+        foreach ($this->getOptions() as $name=>$opts) {
+            switch ($name) {
+                case 'layout': $this->setLayout($opts); break;
+                case 'params': $this->setParams($opts); break;
+                case 'children':
+                    foreach ($opts as $type=>$view) {
+                        $this->setChild($type, $view);
+                    }
+                    break;
+            }
+        }
+        return $this;
     }
 
 // -------------------------------
@@ -103,6 +125,26 @@ class Layout
 
     /**
      * @param   string  $name
+     * @param   string  $param_name
+     * @param   mixed   $param_value
+     * @return  $this
+     * @throws  \MVCFundamental\Exception\ErrorException
+     */
+    public function setChildParam($name, $param_name, $param_value)
+    {
+        $child = $this->getChild($name);
+        if (is_object($child)) {
+            $child->addParam($param_name, $param_value);
+        } else {
+            throw new ErrorException(
+                sprintf('Can not add a parameter for a string child (with name "%s"!', $name)
+            );
+        }
+        return $this;
+    }
+
+    /**
+     * @param   string  $name
      * @param   string  $content
      * @return  $this
      */
@@ -128,6 +170,25 @@ class Layout
     public function hasChild($name)
     {
         return (bool) isset($this->_children[$name]);
+    }
+
+    /**
+     * @param   string  $name
+     * @param   array   $params
+     * @return  string
+     */
+    public function renderChild($name, array $params = array())
+    {
+        $child = $this->getChild($name);
+        $_params = array_merge($this->getParams(), $params);
+        if (!empty($child)) {
+            if (is_object($child)) {
+                return $child->render(null, $_params);
+            } else {
+                return $child;
+            }
+        }
+        return '';
     }
 
     /**
