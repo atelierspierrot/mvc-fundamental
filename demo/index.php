@@ -206,6 +206,7 @@ MESAGE
         $log_dir = $fctrl->getOption('temp_dir');
         $dh  = opendir($log_dir);
         $logs = array();
+        $logs[] = 'LOGS DIR : '.$log_dir;
         while (false !== ($filename = readdir($dh))) {
             if (substr($filename, -4)=='.log') {
                 $logs[] = '##### '.$filename;
