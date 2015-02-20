@@ -22,8 +22,8 @@
 
 namespace MVCFundamental;
 
-use \MVCFundamental\Commons\SingletonTrait;
-use \MVCFundamental\Commons\ServiceContainer;
+use \Patterns\Traits\SingletonTrait;
+use \Library\ServiceContainer;
 use \MVCFundamental\Interfaces\FrontControllerInterface;
 use \MVCFundamental\Interfaces\AppKernelInterface;
 use \MVCFundamental\Exception\ErrorException;

@@ -31,7 +31,7 @@ use \MVCFundamental\Exception\AccessForbiddenException;
 use \MVCFundamental\Commons\ServiceContainerProviderTrait;
 use \MVCFundamental\Commons\Helper;
 use \Patterns\Traits\OptionableTrait;
-use \MVCFundamental\Commons\SingletonTrait;
+use \Patterns\Traits\SingletonTrait;
 use \Library\Helper\Directory as DirectoryHelper;
 
 /**
