@@ -22,7 +22,8 @@
 
 namespace MVCFundamental;
 
-use \Patterns\Traits\SingletonTrait;
+use \MVCFundamental\Commons\SingletonTrait;
+use \MVCFundamental\Commons\ServiceContainer;
 use \MVCFundamental\Interfaces\FrontControllerInterface;
 use \MVCFundamental\Interfaces\AppKernelInterface;
 use \MVCFundamental\Exception\ErrorException;
@@ -36,6 +37,7 @@ use \Library\Logger;
  * Class AppKernel: the root core of the application
  */
 class AppKernel
+    extends ServiceContainer
     implements  AppKernelInterface
 {
 
@@ -83,7 +85,7 @@ class AppKernel
      */
     public function __construct()
     {
-        $this->_initServiceContainer();
+        $this->init();
     }
 
 // -------------------------
@@ -91,187 +93,20 @@ class AppKernel
 // -------------------------
 
     /**
-     * Use this constant to NOT throw error when trying to get an unknown service
-     */
-    const FAIL_GRACEFULLY = 1;
-
-    /**
-     * Use this constant to throw error when trying to get an unknown service
-     *
-     * This is the default behavior.
-     */
-    const FAIL_WITH_ERROR = 2;
-
-    /**
-     * @var \Patterns\Commons\Collection
-     */
-    private $_services;
-
-    /**
-     * @var \Patterns\Commons\Collection
-     */
-    private $_services_constructors;
-
-    /**
-     * @var \Patterns\Commons\Collection
-     */
-    private $_services_protected;
-
-    /**
-     * Initialize the service container system
-     */
-    protected function _initServiceContainer()
-    {
-        $this->_services                = new Collection();
-        $this->_services_protected      = new Collection();
-        $this->_services_constructors   = new Collection();
-    }
-
-    /**
-     * Define a service constructor like `array( name , callback , overwritable )` or a closure
-     *
      * @param   string  $name
-     * @param   array   $constructor A service array constructor like `array( name , callback , overwritable )`
-     *          callable $constructor A callback as a closure that must return the service object: function ($name, $arguments) {}
-     * @return mixed
-     * @api
-     */
-    public function setConstructor($name, $constructor)
-    {
-        $this->_services_constructors->offsetSet($name, $constructor);
-    }
-
-    /**
-     * Construct a service based on the `setConstructors()` item
-     *
-     * @param   string  $name
-     * @param   array   $arguments
-     * @return  void
-     * @throws  ErrorException
-     */
-    protected function _constructService($name, array $arguments = array())
-    {
-        if ($this->_services_constructors->offsetExists($name)) {
-            $data = $this->_services_constructors->offsetGet($name);
-            if (is_callable($data) || ($data instanceof \Closure)) {
-                try {
-                    $item = call_user_func_array(
-                        $data, array($this, $name, $arguments)
-                    );
-                    $this->setService($name, $item);
-                } catch (\Exception $e) {
-                    throw new ErrorException(
-                        sprintf('An error occurred while trying to create a "%s" instance!', $name),
-                        0, 1, __FILE__, __LINE__, $e
-                    );
-                }
-            } elseif (is_array($data)) {
-                $this->setService(
-                    $name,
-                    $data[1],
-                    isset($data[2]) ? $data[2] : true
-                );
-            } else {
-                throw new ErrorException(
-                    sprintf('A service constructor must be a valid callback (for service "%s")!', $name)
-                );
-            }
-        }
-    }
-
-    /**
-     * Register a new service called `$name` declared as NOT overwritable by default
-     *
-     * @param   string          $name
-     * @param   object|callable $callback
-     * @param   bool            $overwritable
-     * @return  $this
+     * @param   object  $object
+     * @return  bool
      * @throws  \MVCFundamental\Exception\ErrorException
-     * @api
      */
-    public function setService($name, $callback, $overwritable = true)
+    protected function _validateService($name, $object)
     {
-        if ($this->hasService($name) && $this->_services_protected->offsetExists($name)) {
-            throw new ErrorException(
-                sprintf('Over-write a "%s" service is forbidden!', $name)
-            );
-        }
-        if (array_key_exists($name, self::$_api) && false===self::isApiValid($name, $callback)) {
+        if (array_key_exists($name, self::$_api) && false===self::isApiValid($name, $object)) {
             throw new ErrorException(
                 sprintf('A "%s" service must implement interface "%s" (get "%s")!',
-                    $name, self::$_api[$name], get_class($callback))
+                    $name, self::$_api[$name], get_class($object))
             );
         }
-        $this->_services->setEntry($name, $callback);
-        if ($overwritable===false) {
-            $this->_services_protected->setEntry($name, true);
-        }
-        return $this;
-    }
-
-    /**
-     * Get a service called `$name` throwing an error by default if it does not exist yet and can not be created
-     *
-     * @param   string  $name
-     * @param   array   $arguments
-     * @param   int     $failure
-     * @return  mixed
-     * @throws  \MVCFundamental\Exception\ErrorException
-     * @api
-     */
-    public function getService($name, array $arguments = array(), $failure = self::FAIL_WITH_ERROR)
-    {
-        if ($this->hasService($name)) {
-            return $this->_services->offsetGet($name);
-        } elseif ($this->_services_constructors->offsetExists($name)) {
-            $this->_constructService($name, $arguments);
-            if ($this->hasService($name)) {
-                return $this->_services->offsetGet($name);
-            }
-        }
-        if ($failure & self::FAIL_WITH_ERROR) {
-            throw new ErrorException(
-                sprintf('Service "%s" not known and can not be created!', $name)
-            );
-        }
-        return null;
-    }
-
-    /**
-     * Test if a service exists in the container
-     *
-     * @param   string  $name
-     * @return  mixed
-     * @api
-     */
-    public function hasService($name)
-    {
-        return (bool) $this->_services->offsetExists($name);
-    }
-
-    /**
-     * Unset a service if it is overwritable
-     *
-     * @param   string  $name
-     * @return  mixed
-     * @throws  \MVCFundamental\Exception\ErrorException
-     * @api
-     */
-    public function unsetService($name)
-    {
-        if ($this->hasService($name)) {
-            if (
-                !$this->_services_protected->offsetExists($name) ||
-                $this->_services_protected->offsetGet($name)!==true
-            ) {
-                $this->_services->offsetUnset($name);
-            } else {
-                throw new ErrorException(
-                    sprintf('Can not unset a protected service (for "%s")!', $name)
-                );
-            }
-        }
-        return $this;
+        return true;
     }
 
 // -------------------------
