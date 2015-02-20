@@ -179,7 +179,7 @@ class AppKernel
      */
     public static function setFrontController(FrontControllerInterface $app)
     {
-        self::set('front_controller', $app, false);
+        self::set('front_controller', $app, true);
     }
 
     /**
