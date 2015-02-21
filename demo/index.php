@@ -27,7 +27,7 @@ if (file_exists($splloader = __DIR__.'/../src/SplClassLoader.php')) {
 } else {
     die("SPL autoloader '$splloader' not found!'");
 }
-$classLoader = new SplClassLoader("Demo", __DIR__."/src");
+$classLoader = new SplClassLoader("Demo", __DIR__.'/src/', SplClassLoader::FAIL_GRACEFULLY);
 $classLoader->register();
 
 // ----------------------------------
@@ -37,7 +37,6 @@ $classLoader->register();
 /**
  * @TODOS
  * - security
- * - organize arguments by declared class name
  * - multiple templates / actions rendering in one page
  */
 
