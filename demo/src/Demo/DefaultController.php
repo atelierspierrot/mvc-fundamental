@@ -49,6 +49,11 @@ class DefaultController
         ));
     }
 
+    public function loremipsumAction()
+    {
+        return 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.';
+    }
+
     public function formAction()
     {
         $content  = FrontController::get('template_engine')
@@ -60,7 +65,12 @@ class DefaultController
     public function saveFormAction($request)
     {
         $data = $request->getData();
-        return 'I received data: '.var_export($data,1);
+        $content = 'I received data: <ul>';
+        foreach ($data as $var=>$val) {
+            $content .= '<li>'.$var.' : '.$val.'</li>';
+        }
+        $content .= '</ul>';
+        return $content;
     }
 
     public function composePartsAction(TemplateEngineInterface $template_engine, FrontControllerInterface $app)
@@ -70,7 +80,7 @@ class DefaultController
         $parts['title'] = 'A composite rendering';
         $parts['breadcrumb'] = array(
             'home'=>$req.'/',
-            'composeparts'=>$req.'/composeparts'
+            'compose_parts'=>$req.'/compose_parts'
         );
         $parts['left_block'] = $template_engine->renderTemplate(self::$views_dir.'left_block.php');
         $parts['content'] = $template_engine->renderTemplate(self::$views_dir.'lorem_ipsum_content.php');
@@ -85,7 +95,7 @@ class DefaultController
         $params['title'] = 'A layout rendering';
         $params['breadcrumb'] = array(
             'home'=>$req.'/',
-            'composelayout'=>$req.'/composelayout'
+            'compose_layout'=>$req.'/compose_layout'
         );
         return $layout
             ->setLayout(self::$views_dir.'layout.php')
@@ -97,18 +107,31 @@ class DefaultController
 
     public function defaultLayoutAction(TemplateEngineInterface $template_engine, FrontControllerInterface $app)
     {
-        $layout = $template_engine->getDefaultLayout();
-        $req    = $app->get('request')->getBaseUrl();
+        $layout     = $template_engine->getDefaultLayout();
+        $req        = $app->get('request')->getBaseUrl();
+        $content    = $template_engine->renderTemplate(self::$views_dir.'lorem_ipsum_content.php');
+        $content    .= $app->callControllerAction(null, 'loremipsum');
+        $content    .= $app->callRoute('/hello/your-name', array('name'=>'your-new-name'));
         $layout
             ->addParam('title', 'My test layout')
-            ->addParam('breadcrumb', array(
+            ->addParam('hat', 'a simple bootstrap canvas')
+            ->addParam('logo', 'http://lorempixel.com/400/200/')
+//            ->addParam('home_link', $req.'/')
+            ->addParam('menu', array(
                 'home'=>$req.'/',
                 'item 1'=>'#',
                 'item 2'=>'#',
             ))
+            ->addParam('breadcrumb', array(
+                'home'=>$req.'/',
+                'default_layout'=>$req.'/default_layout'
+            ))
+            ->addParam('messages', array(
+                'This is a system message ...',
+                'danger'=>'this is a system "danger" message'
+            ))
             ->setChildParam('content', 'title', 'Global test content')
-            ->setChildParam('content', 'content',
-                $template_engine->renderTemplate(self::$views_dir.'lorem_ipsum_content.php'))
+            ->setChildParam('content', 'content', $content)
             ->setChildParam('aside', 'title', 'Test aside column')
             ->setChildParam('aside', 'content',
                 $template_engine->renderTemplate(self::$views_dir.'left_block.php'))
@@ -116,8 +139,20 @@ class DefaultController
             ->setChildParam('extra', 'content',
                 $template_engine->renderTemplate(self::$views_dir.'left_block.php'))
             ->setChildParam('footer', 'content', 'My test footer info ...')
+            ->setChildParam('footer', 'content_left', 'My test left footer info ...')
+            ->setChildParam('footer', 'content_right', 'My test right footer info ...')
             ;
         return $layout->renderLayout();
+    }
+
+    public function callcontrolleractionAction(FrontControllerInterface $app)
+    {
+        return $app->callControllerAction(null, 'loremipsum');
+    }
+
+    public function callrouteAction(FrontControllerInterface $app)
+    {
+        return $app->callRoute('/hello/your-name', array('name'=>'your-new-name'));
     }
 
 }

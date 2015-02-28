@@ -64,6 +64,16 @@ class TestController
         return 'This is the rendering of method '.__METHOD__;
     }
 
+    public function jsonAction(FrontControllerInterface $app)
+    {
+        $response = $app->get('response');
+        $response
+            ->setContentType('json')
+            ->setContents(array("var"=>"val"))
+        ;
+        return $response;
+    }
+
 }
 
 // Endfile

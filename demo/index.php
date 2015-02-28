@@ -93,12 +93,15 @@ $fctrl
     <li><a href="{$req}test/altargsmethod">/test/altargsmethod</a> : test automatic arguments passed to a controller's action with custom arguments names</li>
     <li><a href="{$req}test/forwarding">/test/forwarding</a> : test automatic forwarding - should show result of method <var>TestController::forwardingTargetAction()</var></li>
     <li><a href="{$req}test/redirecting">/test/redirecting</a> : test automatic redirecting - should end on route <var>/test/redirectTarget</var></li>
+    <li><a href="{$req}test/json">/test/json</a> : test of a JSON response</li>
 </ul>
-<p>Various types of templating composition:</p>
+<p>Various types of templating or aggregation composition:</p>
 <ul>
     <li><a href="{$req}/compose_parts">/compose_parts</a> : content composed by aggregating different parts</li>
     <li><a href="{$req}/compose_layout">/compose_layout</a> : content composed using a Layout object</li>
     <li><a href="{$req}/default_layout">/default_layout</a> : test of the default layout (with lorem ipsum contents)</li>
+    <li><a href="{$req}/callcontrolleraction">/callcontrolleraction</a> : call another controller's action</li>
+    <li><a href="{$req}/callroute">/callroute</a> : call another route</li>
 </ul>
 <p>Tests of internal error handling:</p>
 <ul>
