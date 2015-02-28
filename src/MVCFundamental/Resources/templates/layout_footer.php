@@ -20,11 +20,35 @@
  * <http://github.com/atelierspierrot/mvc-fundamental>.
  */
 
-if (!isset($title))     $title      = '';
-if (!isset($content))   $content    = '';
-if (!isset($params))    $params     = array();
+/**
+ * @var     string  $content        The main content of the footer
+ * @var     string  $content_left   The content of footer's left block
+ * @var     string  $content_eight  The content of footer's right block
+ */
+if (!isset($content))        $content         = '';
+if (!isset($content_left))   $content_left    = '';
+if (!isset($content_right))  $content_right   = '';
 
 ?>
 <footer class="footer">
-    <?php echo $content; ?>
+
+<?php if (!empty($content)) : ?>
+    <div class="footer-content">
+        <?php echo $content; ?>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($content_left)) : ?>
+    <div class="footer-content pull-left text-muted">
+        <?php echo $content_left; ?>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($content_right)) : ?>
+    <div class="footer-content pull-right text-muted">
+        <?php echo $content_right; ?>
+    </div>
+<?php endif; ?>
+
+    <div class="clearfix"></div>
 </footer>

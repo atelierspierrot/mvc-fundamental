@@ -23,12 +23,10 @@
 namespace MVCFundamental\Commons;
 
 use \MVCFundamental\Basic\Layout;
-use \MVCFundamental\FrontController;
 use \MVCFundamental\AppKernel;
-use \MVCFundamental\Commons\Helper;
 
 /**
- * Class Layout
+ * A default Layout with a "classic" web-page canvas
  */
 class DefaultLayout
     extends Layout
@@ -45,6 +43,7 @@ class DefaultLayout
             'footer'    => 'layout_footer.php',
             'extra'     => 'layout_extra.php',
             'aside'     => 'layout_aside.php',
+            'system'    => 'layout_system.php',
         ),
         'params'    => array(
             'title'     => 'Default layout',
