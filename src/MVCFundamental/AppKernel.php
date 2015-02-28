@@ -65,6 +65,7 @@ class AppKernel
         'template'          => 'MVCFundamental\Interfaces\TemplateInterface',
         'layout'            => 'MVCFundamental\Interfaces\LayoutInterface',
         'locator'           => 'MVCFundamental\Interfaces\LocatorInterface',
+        'logger'            => 'Psr\Log\LoggerInterface',
     );
 
     /**
@@ -206,6 +207,7 @@ class AppKernel
 
         // define internal handlers
         set_exception_handler(array(__CLASS__, 'handleException'));
+        register_shutdown_function(array(__CLASS__, 'handleShutdown'));
         if (self::getFrontController()->getOption('convert_error_to_exception')==true) {
             set_error_handler(array(__CLASS__, 'handleError'));
         }
@@ -239,10 +241,10 @@ class AppKernel
             'minimum_log_level' => self::getFrontController()->getOption('log_level'),
         );
         $logger_class = self::getFrontController()->getOption('app_logger');
-        if (!class_exists($logger_class) || !Helper::classImplements($logger_class, 'Psr\Log\LoggerInterface')) {
+        if (!class_exists($logger_class) || !Helper::classImplements($logger_class, self::getApi('logger'))) {
             throw new ErrorException(
                 sprintf('A logger must exist and implement the "%s" interface (for class "%s")!',
-                    'Psr\Log\LoggerInterface', $logger_class)
+                    self::getApi('logger'), $logger_class)
             );
         }
         self::set('logger', new $logger_class($logger_options));
@@ -267,8 +269,37 @@ class AppKernel
     }
 
     /**
+     * @var bool Does the system already correctly terminated
+     */
+    private static $_terminated = false;
+
+    /**
+     * This must be called when the system terminates its run
+     *
+     * @param FrontControllerInterface $app
+     * @return mixed
+     */
+    public static function terminate(FrontControllerInterface $app)
+    {
+        if (!self::$_terminated) {
+
+        }
+    }
+
+    /**
+     * This must abort a runtime safely
+     *
      * @param   \Exception $e
-     * @return  mixed
+     * @return  void
+     */
+    public static function abort(\Exception $e)
+    {
+
+    }
+
+    /**
+     * @param   \Exception $e
+     * @return  void
      * @throws  \MVCFundamental\Exception\ErrorException
      */
     public static function handleException(\Exception $e)
@@ -293,12 +324,25 @@ class AppKernel
      * @param   string  $errfile
      * @param   int     $errline
      * @param   array   $errcontext
-     * @return  mixed
+     * @return  void
      * @throws  \MVCFundamental\Exception\ErrorException
      */
     public static function handleError($errno = 0, $errstr = '', $errfile = '', $errline = 0, array $errcontext = array())
     {
+        if (!(error_reporting() & $errno)) {
+            return true;
+        }
         throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+    }
+
+    /**
+     * This must handle runtime shutdown
+     *
+     * @return void
+     */
+    public static function handleShutdown()
+    {
+        self::terminate(self::getFrontController());
     }
 
     /**

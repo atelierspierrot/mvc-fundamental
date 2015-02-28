@@ -23,6 +23,8 @@
 namespace MVCFundamental;
 
 use \MVCFundamental\Interfaces\FrontControllerInterface;
+use \MVCFundamental\Interfaces\ResponseInterface;
+use \MVCFundamental\Interfaces\RequestInterface;
 use \MVCFundamental\Exception\Exception;
 use \MVCFundamental\Exception\ErrorException;
 use \MVCFundamental\Exception\NotFoundException;
@@ -53,15 +55,15 @@ class FrontController
      */
     protected static $_defaults = array(
         // API
-        'router'                    => '\MVCFundamental\Basic\Router',
-        'route_item'                => '\MVCFundamental\Basic\Route',
-        'response'                  => '\MVCFundamental\Basic\Response',
-        'request'                   => '\MVCFundamental\Basic\Request',
-        'template_engine'           => '\MVCFundamental\Basic\TemplateEngine',
-        'template_item'             => '\MVCFundamental\Basic\Template',
-        'layout_item'               => '\MVCFundamental\Basic\Layout',
-        'locator'                   => '\MVCFundamental\Basic\Locator',
-        'error_controller'          => '\MVCFundamental\Basic\ErrorController',
+        'router'                    => 'MVCFundamental\Basic\Router',
+        'route_item'                => 'MVCFundamental\Basic\Route',
+        'response'                  => 'MVCFundamental\Basic\Response',
+        'request'                   => 'MVCFundamental\Basic\Request',
+        'template_engine'           => 'MVCFundamental\Basic\TemplateEngine',
+        'template_item'             => 'MVCFundamental\Basic\Template',
+        'layout_item'               => 'MVCFundamental\Basic\Layout',
+        'locator'                   => 'MVCFundamental\Basic\Locator',
+        'error_controller'          => 'MVCFundamental\Basic\ErrorController',
         'controller_locator'        => null,
         'view_file_locator'         => null,
         'controller_name_finder'    => '%sController',
@@ -74,7 +76,7 @@ class FrontController
         'routes'                    => array(),
         'default_template'          => 'default.php',
         'default_layout'            => 'layout.php',
-        'default_layout_class'      => '\MVCFundamental\Commons\DefaultLayout',
+        'default_layout_class'      => 'MVCFundamental\Commons\DefaultLayout',
         // default error messages
         '500_error_info'            => 'An internal error occurred :(',
         '404_error_info'            => 'The requested page cannot be found :(',
@@ -174,31 +176,50 @@ class FrontController
 // ---------------------------
 
     /**
+     * @param   \MVCFundamental\Interfaces\RequestInterface $request
      * @return  void
      * @throws  \MVCFundamental\Exception\Exception
      * @throws  \MVCFundamental\Exception\NotFoundException
      */
-    public function run()
+    public function run(RequestInterface $request = null)
     {
-        $arguments = $this->get('request')->getArguments();
-        $result = $this->callRoute(
-            $this->get('request')->getUri(),
-            !empty($arguments) ? $arguments : array(),
-            $this->get('request')->getMethod()
-        );
-        if (is_string($result)) {
-            $this->get('response')->addContent($result);
-        }
-        $this->display();
+        $response = $this->handle($request);
+        $this->send($response);
+        AppKernel::terminate($this);
     }
 
     /**
-     * @return void
+     * @param   \MVCFundamental\Interfaces\RequestInterface $request
+     * @return  \MVCFundamental\Interfaces\ResponseInterface
      */
-    public function display()
+    public function handle(RequestInterface $request = null)
     {
-        $this->get('response')->send();
-        exit();
+        if (is_null($request)) {
+            $request = $this->get('request');
+        }
+        $arguments  = $request->getArguments();
+        $response   = $this->callRoute(
+            $request->getUri(),
+            !empty($arguments) ? $arguments : array(),
+            $request->getMethod()
+        );
+        if (is_string($response)) {
+            $this->get('response')->addContent($response);
+            $response = $this->get('response');
+        }
+        return $response;
+    }
+
+    /**
+     * @param   \MVCFundamental\Interfaces\ResponseInterface $response
+     * @return  void
+     */
+    public function send(ResponseInterface $response = null)
+    {
+        if (is_null($response)) {
+            $response = $this->get('response');
+        }
+        $response->send();
     }
 
     /**
@@ -383,7 +404,7 @@ exit('-- out --');
             }
         }
 
-        return $this;
+        return '';
     }
 
     /**

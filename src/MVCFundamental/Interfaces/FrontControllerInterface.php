@@ -33,59 +33,76 @@ interface FrontControllerInterface
 {
 
     /**
-     * @param string $mode
-     * @return bool
+     * @param   string $mode
+     * @return  bool
      */
     public function isMode($mode);
 
     /**
-     * @return void
+     * This must boot the system, handle the request, send resulting response and terminate the system
+     *
+     * @param   \MVCFundamental\Interfaces\RequestInterface $request
+     * @return  void
      */
-    public function run();
+    public function run(RequestInterface $request = null);
 
     /**
-     * @return void
+     * @param   \MVCFundamental\Interfaces\RequestInterface $request
+     * @return  \MVCFundamental\Interfaces\ResponseInterface
      */
-    public function display();
+    public function handle(RequestInterface $request = null);
 
     /**
-     * @param string $message
-     * @param int $status
-     * @param int $code
-     * @param string $filename
-     * @param int $lineno
-     * @return void
+     * @param   \MVCFundamental\Interfaces\ResponseInterface $response
+     * @return  mixed
+     */
+    public function send(ResponseInterface $response = null);
+
+    /**
+     * @param   string $url
+     * @param   bool $follow
+     * @return  void
+     */
+    public function redirect($url, $follow = false);
+
+    /**
+     * @param   string  $message
+     * @param   int     $status
+     * @param   int     $code
+     * @param   string  $filename
+     * @param   int     $lineno
+     * @return  void
      */
     public function error($message, $status = 500, $code = 0, $filename = __FILE__, $lineno = __LINE__);
 
     /**
-     * @param $view_file
-     * @param array $params
-     * @return string
+     * @param   string  $view_file
+     * @param   array   $params
+     * @return  string
      */
     public function render($view_file, array $params = array());
 
     /**
-     * @param string $route
-     * @param callable $callback
-     * @param string $method
-     * @return void
+     * @param   string      $route
+     * @param   callable    $callback
+     * @param   string      $method
+     * @return  void
      */
     public function addRoute($route, $callback, $method = 'get');
 
     /**
-     * @param string $route
-     * @param array $arguments
-     * @param string $method
-     * @return string
+     * @param   string  $route
+     * @param   array   $arguments
+     * @param   string  $method
+     * @return  string
      */
     public function callRoute($route, array $arguments = array(), $method = 'get');
 
     /**
-     * @param null|string $controller
-     * @param null|string $action
-     * @param array $arguments
-     * @return string
+     * @param   null|string $controller
+     * @param   null|string $action
+     * @param   array       $arguments
+     * @return  string
      */
     public function callControllerAction($controller = null, $action = null, array $arguments = array());
 

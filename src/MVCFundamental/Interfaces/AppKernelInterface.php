@@ -32,12 +32,32 @@ interface AppKernelInterface
 {
 
     /**
+     * This must be called when the system boots
+     *
      * @param FrontControllerInterface $app
      * @return mixed
      */
     public static function boot(FrontControllerInterface $app);
 
     /**
+     * This must be called when the system terminates its run
+     *
+     * @param FrontControllerInterface $app
+     * @return mixed
+     */
+    public static function terminate(FrontControllerInterface $app);
+
+    /**
+     * This must abort a runtime safely
+     *
+     * @param   \Exception $e
+     * @return  void
+     */
+    public static function abort(\Exception $e);
+
+    /**
+     * This must handle a logging system
+     *
      * @param mixed $level
      * @param string $message
      * @param array $context
@@ -46,12 +66,16 @@ interface AppKernelInterface
     public static function log($level, $message, array $context = array());
 
     /**
+     * This must handle caught exceptions
+     *
      * @param   \Exception $e
      * @return  void
      */
     public static function handleException(\Exception $e);
 
     /**
+     * This must handle caught errors
+     *
      * @param   int     $errno
      * @param   string  $errstr
      * @param   string  $errfile
@@ -60,6 +84,13 @@ interface AppKernelInterface
      * @return  void
      */
     public static function handleError($errno = 0, $errstr = '', $errfile = '', $errline = 0, array $errcontext = array());
+
+    /**
+     * This must handle runtime shutdown
+     *
+     * @return void
+     */
+    public static function handleShutdown();
 
 }
 
