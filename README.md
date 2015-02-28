@@ -9,10 +9,12 @@ MVC system to build simple web-apps.
 
 Add the package to your [Composer](http://getcomposer.org/) requirements:
 
-    "require": {
-        ...
-        "atelierspierrot/mvc-fundamental": "dev-master"
-    }
+```json
+"require": {
+    "your/depdencies": "*",
+    "atelierspierrot/mvc-fundamental": "dev-master"
+}
+```
 
 Please note that this application requires PHP version 5.4 or higher.
 
@@ -181,6 +183,14 @@ $app->callRoute( $route, array $arguments = array(), $method = 'get' ) : string
 $app->redirect( $route, $follow = false ) : string
 ```
 
+-   trigger an event with an optional observable object:
+
+```php
+$app->trigger( 'event.name' , object ) : void
+```
+
+-   do any PHP other stuff ...
+
 ### Templating system
 
 The templates construction is handled by the `TemplateEngine` object that creates and aggregates
@@ -198,6 +208,25 @@ The template engine works in couple with two kind of objects: the simple `Templa
 the `Layout`. A `Template` is a simple view file included with parameters while a `Layout`
 is a kind of "full page" canvas handling predefined page parts, its `child`, which can default
 to a specific template file, and can be overwritten in the layout object.
+
+### Event management
+
+The front controller is designed to be able to register and unregister some event listeners and
+trigger an event:
+
+```php
+// register a callback for an event
+$app->on( event.name , callback )
+
+// unregister a callaback
+$app->off( event.name , callback )
+
+// trigger an event
+$app->trigger( event.name )
+
+// trigger an event with an observable content
+$app->trigger( event.name , observable_object )
+```
 
 ### Error & exceptions
 
@@ -231,6 +260,8 @@ $options = array(
     'layout_item'               => '\MVCFundamental\Basic\Layout',
     'locator'                   => '\MVCFundamental\Basic\Locator',
     'error_controller'          => '\MVCFundamental\Basic\ErrorController',
+    'event_item'                => '\MVCFundamental\Basic\Event',
+    'event_manager'             => '\MVCFundamental\Basic\EventManager',
 
     // this can be a callback to retrieve a controller class: function ($name) {}
     'controller_locator'        => null,
@@ -303,6 +334,7 @@ in the container:
 -   the **template_engine**, which must implement the `\MVCFundamental\Interfaces\TemplateEngineInterface`
 -   the **locator**, which must implement the `\MVCFundamental\Interfaces\LocatorInterface`
 -   the **error_controller**, which must implement the `\MVCFundamental\Interfaces\ErrorControllerInterface`
+-   the **event_manager**, which must implement the `\MVCFundamental\Interfaces\EventManagerInterface`
 
 More, any controller must implement the `\MVCFundamental\Interfaces\ControllerInterface`
 and the router must handle a collection of routes implementing the `\MVCFundamental\Interfaces\RouteInterface`.
@@ -311,8 +343,37 @@ The template engine can handle some *templates* which must implement the
 `\MVCFundamental\Interfaces\TemplateInterface` and some *layouts* which must
 implement the `\MVCFundamental\Interfaces\LayoutInterface`.
 
+The event manager will create and trigger events implementing the `\MVCFundamental\Interfaces\EventInterface`.
+
 They all default to their implementation in the `\MVCFundamental\Basic` namespace
 but you can overwrite all of them.
+
+
+### App life-cycle
+
+The life-cycle of a runtime is fully handled by the front controller, which calls some
+methods of the kernel. The basic life-cycle schema is something like:
+
+    // creation of the front controller instance with options
+    $app = FrontController::getInstance( $options );
+    // this will create the AppKernel object and call:
+    $app->boot()
+    $kernel->boot()
+    
+    // loading of app settings: routes or other options
+    $app
+        ->addRoute( ... )
+        ->on( event , ... )
+    ;
+    
+    // launch the app work
+    $app->run();
+    // this will distribute the request
+    $response = $app->handle( $request );
+    // then send the response
+    $app->send( $response );
+    // and finally terminate the runtime
+    $kernel->terminate();
 
 
 ## Author & License
@@ -331,4 +392,4 @@ but you can overwrite all of them.
 
 >    Les Ateliers Pierrot - Paris, France
 
->    <www.ateliers-pierrot.fr> - <contact@ateliers-pierrot.fr>
+>    <http://www.ateliers-pierrot.fr/> - <contact@ateliers-pierrot.fr>
