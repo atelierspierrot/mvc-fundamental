@@ -64,6 +64,7 @@ class FrontController
         'layout_item'               => 'MVCFundamental\Basic\Layout',
         'locator'                   => 'MVCFundamental\Basic\Locator',
         'error_controller'          => 'MVCFundamental\Basic\ErrorController',
+        'event_manager'             => 'MVCFundamental\Basic\EventManager',
         'event_item'                => 'MVCFundamental\Basic\Event',
         'controller_locator'        => null,
         'view_file_locator'         => null,
@@ -82,8 +83,6 @@ class FrontController
         '500_error_info'            => 'An internal error occurred :(',
         '404_error_info'            => 'The requested page cannot be found :(',
         '403_error_info'            => 'Access to this page is forbidden :(',
-        // event manager
-        'app_event_manager'         => 'Library\Event\EventManager',
         // app dev
         'mode'                      => 'production', // dev , test , production
         'convert_error_to_exception'=> false,
