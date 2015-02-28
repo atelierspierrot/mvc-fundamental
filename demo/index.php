@@ -58,6 +58,9 @@ $fctrl = \MVCFundamental\FrontController::getInstance(array(
 
 ));
 
+// load some predefined settings
+$helper = new \Demo\TestHelper;
+
 // test a log message
 \MVCFundamental\AppKernel::log('info', 'Test log for request '.$fctrl->get('request')->getUri());
 
@@ -93,6 +96,8 @@ $fctrl
     <li><a href="{$req}test/altargsmethod">/test/altargsmethod</a> : test automatic arguments passed to a controller's action with custom arguments names</li>
     <li><a href="{$req}test/forwarding">/test/forwarding</a> : test automatic forwarding - should show result of method <var>TestController::forwardingTargetAction()</var></li>
     <li><a href="{$req}test/redirecting">/test/redirecting</a> : test automatic redirecting - should end on route <var>/test/redirectTarget</var></li>
+    <li><a href="{$req}test/event1">/test/event1</a> : test of event management triggering <code>event.1</code></li>
+    <li><a href="{$req}test/event2">/test/event2</a> : test of event management triggering <code>event.2</code></li>
     <li><a href="{$req}test/json">/test/json</a> : test of a JSON response</li>
 </ul>
 <p>Various types of templating or aggregation composition:</p>
@@ -216,6 +221,15 @@ MESAGE
             }
         }
         call_user_func_array(array('MVCFundamental\Commons\Helper', 'debug'), $logs);
+    })
+
+    // event listening
+    ->on('event.1', array('Demo\DefaultController', 'eventHandler'))
+
+    // trigger an event
+    ->addRoute('/test/event2', function () use ($fctrl) {
+        $fctrl->trigger('event.2');
+        return 'Event 2 was triggered';
     })
 
     // app run

@@ -9,6 +9,7 @@ use \MVCFundamental\FrontController;
 use \MVCFundamental\Interfaces\FrontControllerInterface;
 use \MVCFundamental\Interfaces\ControllerInterface;
 use \MVCFundamental\Interfaces\TemplateEngineInterface;
+use \MVCFundamental\Interfaces\EventInterface;
 
 class DefaultController
     implements ControllerInterface
@@ -18,6 +19,15 @@ class DefaultController
      * The directory where to search the views files
      */
     static $views_dir = 'src/templates/';
+
+    public static function eventHandler(EventInterface $event)
+    {
+        echo "> event handler from ".__METHOD__." treating event ".$event->getName().PHP_EOL.'<br />';
+        $name = @$event->name;
+        if ($name) {
+            echo "> getting the 'name' property from the event: ".$event->name.PHP_EOL.'<br />';
+        }
+    }
 
     /**
      * The home page of the controller
