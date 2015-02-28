@@ -116,6 +116,7 @@ $fctrl
     <li><a href="{$req}accessforbiddenexception">/accessforbiddenexception</a> : a "forbidden access" test</li>
     <li><a href="{$req}servererror">/servererror</a> : an "internal server error" test</li>
     <li><a href="{$req}twoexceptions">/twoexceptions</a> : a test of multiple errors</li>
+    <li><a href="{$req}azerty">/not-existing-route</a> : a test of automatic 404</li>
 </ul>
 <p>Test of a form page:</p>
 <ul>
