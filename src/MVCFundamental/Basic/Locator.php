@@ -103,6 +103,10 @@ class Locator
      */
     public function locateTemplate($name)
     {
+        if (empty($name)) {
+            return null;
+        }
+
         if (file_exists($name)) {
             return realpath($name);
         }
