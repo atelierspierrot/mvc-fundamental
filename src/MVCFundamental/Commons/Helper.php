@@ -55,6 +55,9 @@ class Helper
      */
     public static function classImplements($class_name, $interface_name)
     {
+        if (empty($interface_name) || !interface_exists($interface_name)) {
+            return false;
+        }
         return CodeHelper::implementsInterface($class_name, $interface_name);
     }
 
