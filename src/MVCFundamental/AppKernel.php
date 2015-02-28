@@ -23,7 +23,7 @@
 namespace MVCFundamental;
 
 use \Patterns\Traits\SingletonTrait;
-use \Library\ServiceContainer;
+use \Library\ServiceContainer\ServiceContainer;
 use \MVCFundamental\Interfaces\FrontControllerInterface;
 use \MVCFundamental\Interfaces\AppKernelInterface;
 use \MVCFundamental\Exception\ErrorException;
@@ -258,10 +258,10 @@ class AppKernel
 
             if (array_key_exists($var, self::$_constructors)) {
                 $cls_index  = self::$_constructors[$var];
-                self::getInstance()->setConstructor(
+                self::getInstance()->setProvider(
                     $var, function ($app, $name, array $arguments = array()) use ($val, $cls_index) {
-                    return $app::apiFactory($cls_index, $val, $arguments);
-                }
+                        return $app::apiFactory($cls_index, $val, $arguments);
+                    }
                 );
             }
         }
