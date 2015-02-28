@@ -125,13 +125,12 @@ class ErrorController
      */
     protected function _render($content, $title = 'Error', $status = HttpStatus::ERROR, array $params = array())
     {
-        $content = FrontController::get('template_engine')
-            ->renderDefault($content, $title, $params);
         $fctrl = FrontController::getInstance();
-        $fctrl->set('response', new Response(
+        $content = $fctrl->get('template_engine')
+            ->renderDefault($content, $title, $params);
+        $fctrl->send(new Response(
             $content, $status, 'html', 'utf8'
         ));
-        $fctrl->display();
     }
 
     /**
