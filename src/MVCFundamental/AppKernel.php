@@ -65,7 +65,9 @@ class AppKernel
         'template'          => 'MVCFundamental\Interfaces\TemplateInterface',
         'layout'            => 'MVCFundamental\Interfaces\LayoutInterface',
         'locator'           => 'MVCFundamental\Interfaces\LocatorInterface',
+        'event'             => 'MVCFundamental\Interfaces\EventInterface',
         'logger'            => 'Psr\Log\LoggerInterface',
+        'event_manager'     => 'Library\Event\EventManagerInterface',
     );
 
     /**
@@ -75,6 +77,7 @@ class AppKernel
         'route_item'        => 'route',
         'template_item'     => 'template',
         'layout_item'       => 'layout',
+        'event_item'        => 'event',
     );
 
 // -------------------------
@@ -228,6 +231,18 @@ class AppKernel
             }
             self::getFrontController()->setOption('temp_dir', $tmp_dir);
         }
+
+        // the application event manager
+        $event_manager_cls = self::getFrontController()->getOption('app_event_manager');
+        if (!class_exists($event_manager_cls) || !Helper::classImplements($event_manager_cls, self::getApi('event_manager'))) {
+            throw new ErrorException(
+                sprintf('An event manager must exist and implement the "%s" interface (for class "%s")!',
+                    self::getApi('event_manager'), $event_manager_cls)
+            );
+        }
+        $event_manager = new $event_manager_cls();
+        $event_manager->setEventClass(self::getFrontController()->getOption('event_item'));
+        self::set('event_manager', $event_manager);
 
         // the application logger
         if (self::getFrontController()->getOption('minimum_log_level')==null) {

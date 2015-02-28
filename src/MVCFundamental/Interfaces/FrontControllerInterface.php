@@ -107,11 +107,31 @@ interface FrontControllerInterface
     public function callControllerAction($controller = null, $action = null, array $arguments = array());
 
     /**
-     * @param string $url
-     * @param bool $follow
-     * @return void
+     * Registers a new event listener
+     *
+     * @param   string      $event      The event name
+     * @param   callable    $callback   The event callback
+     * @return  void
      */
-    public function redirect($url, $follow = false);
+    public function on($event, $callback);
+
+    /**
+     * Unregisters a new event listener
+     *
+     * @param   string      $event      The event name
+     * @param   callable    $callback   The event callback
+     * @return  void
+     */
+    public function off($event, $callback);
+
+    /**
+     * Tiggers an event
+     *
+     * @param   string  $event
+     * @param   mixed $subject The subject of the event
+     * @return  void
+     */
+    public function trigger($event, $subject = null);
 
 }
 

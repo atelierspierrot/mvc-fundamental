@@ -64,6 +64,7 @@ class FrontController
         'layout_item'               => 'MVCFundamental\Basic\Layout',
         'locator'                   => 'MVCFundamental\Basic\Locator',
         'error_controller'          => 'MVCFundamental\Basic\ErrorController',
+        'event_item'                => 'MVCFundamental\Basic\Event',
         'controller_locator'        => null,
         'view_file_locator'         => null,
         'controller_name_finder'    => '%sController',
@@ -81,6 +82,8 @@ class FrontController
         '500_error_info'            => 'An internal error occurred :(',
         '404_error_info'            => 'The requested page cannot be found :(',
         '403_error_info'            => 'Access to this page is forbidden :(',
+        // event manager
+        'app_event_manager'         => 'Library\Event\EventManager',
         // app dev
         'mode'                      => 'production', // dev , test , production
         'convert_error_to_exception'=> false,
@@ -453,6 +456,54 @@ exit('-- out --');
             $this->set('request', new $req_cls($url, 'get'));
             $this->run();
         }
+    }
+
+    /**
+     * @param $event
+     * @param $callback
+     * @throws \Exception
+     * @return $this
+     */
+    public function on($event, $callback)
+    {
+        try {
+            $this->get('event_manager')->addListener($event, $callback);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+        return $this;
+    }
+
+    /**
+     * @param $event
+     * @param $callback
+     * @throws \Exception
+     * @return $this
+     */
+    public function off($event, $callback)
+    {
+        try {
+            $this->get('event_manager')->removeListener($event, $callback);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+        return $this;
+    }
+
+    /**
+     * @param string $event
+     * @param mixed $subject
+     * @throws \Exception
+     * @return $this
+     */
+    public function trigger($event, $subject = null)
+    {
+        try {
+            $this->get('event_manager')->triggerEvent($event, $subject);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+        return $this;
     }
 
 }
