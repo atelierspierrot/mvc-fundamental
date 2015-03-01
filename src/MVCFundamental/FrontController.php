@@ -272,6 +272,7 @@ class FrontController
 
 /*/
 header('Content-Type: text/plain');
+echo "route is: ".var_export($route,1).PHP_EOL;
 echo "callback is: ".var_export($callback,1).PHP_EOL;
 echo "arguments are: ".var_export($arguments,1).PHP_EOL;
 exit('-- out --');
