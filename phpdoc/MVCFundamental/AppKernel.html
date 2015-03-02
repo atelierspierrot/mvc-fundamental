@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow, all" />
+        <title>MVCFundamental\AppKernel | MVC Fundamental</title>
+                    <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+                            </head>
+        <body id="class">
+            <div class="header">
+        <ul>
+            <li><a href="../classes.html">Classes</a></li>
+                            <li><a href="../namespaces.html">Namespaces</a></li>
+                        <li><a href="../interfaces.html">Interfaces</a></li>
+            <li><a href="../traits.html">Traits</a></li>
+            <li><a href="../doc-index.html">Index</a></li>
+            
+        </ul>
+
+        <div id="title">MVC Fundamental</div>
+
+            <div class="type">Class</div>
+    <h1><a href="../MVCFundamental.html">MVCFundamental</a>\AppKernel</h1>
+    </div>
+        <div class="content">
+                <p>    class
+    <strong>AppKernel</strong>        extends <abbr title="Library\ServiceContainer\ServiceContainer">ServiceContainer</abbr>        implements
+        <a href="../MVCFundamental/Interfaces/AppKernelInterface.html"><abbr title="MVCFundamental\Interfaces\AppKernelInterface">AppKernelInterface</abbr></a></p>
+
+            <div class="description">
+            <p>Class AppKernel: the root core of the application</p>
+            <p>
+</p>
+        </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <table>
+                    <tr>
+                <td class="type">
+                    
+                </td>
+                <td class="last">
+                    <a href="#method___construct">__construct</a>()
+                    <p>Avoid public construction of the object and prefer the <code>getInstance()</code> static singleton access</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;null|string
+                </td>
+                <td class="last">
+                    <a href="#method_getApi">getApi</a>(string $name)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;bool
+                </td>
+                <td class="last">
+                    <a href="#method_isApiValid">isApiValid</a>(string $name, object|callable $object)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;object
+                </td>
+                <td class="last">
+                    <a href="#method_apiFactory">apiFactory</a>(string $name, string $class, array $arguments = array())
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;
+                </td>
+                <td class="last">
+                    <a href="#method_setFrontController">setFrontController</a>(<a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a> $app)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;<a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_getFrontController">getFrontController</a>()
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;void
+                </td>
+                <td class="last">
+                    <a href="#method_boot">boot</a>(<a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a> $app)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;mixed
+                </td>
+                <td class="last">
+                    <a href="#method_terminate">terminate</a>(<a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a> $app)
+                    <p>This must be called when the system terminates its run</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;void
+                </td>
+                <td class="last">
+                    <a href="#method_abort">abort</a>(<abbr title="MVCFundamental\Exception">Exception</abbr> $e)
+                    <p>This must abort a runtime safely</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;void
+                </td>
+                <td class="last">
+                    <a href="#method_handleException">handleException</a>(<abbr title="MVCFundamental\Exception">Exception</abbr> $e)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;void
+                </td>
+                <td class="last">
+                    <a href="#method_handleError">handleError</a>(int $errno, string $errstr = &#039;&#039;, string $errfile = &#039;&#039;, int $errline, array $errcontext = array())
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;void
+                </td>
+                <td class="last">
+                    <a href="#method_handleShutdown">handleShutdown</a>()
+                    <p>This must handle runtime shutdown</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;mixed
+                </td>
+                <td class="last">
+                    <a href="#method_log">log</a>(mixed $level, string $message, array $context = array())
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+            </table>
+
+
+        <h2>Details</h2>
+
+                        <h3 id="method___construct">
+        <div class="location">at line 90</div>
+        <code>            public            
+    <strong>__construct</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>Avoid public construction of the object and prefer the <code>getInstance()</code> static singleton access</p>
+        <p>
+</p>
+        <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getApi">
+        <div class="location">at line 125</div>
+        <code>        static    public            null|string
+    <strong>getApi</strong>(string $name)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>null|string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_isApiValid">
+        <div class="location">at line 136</div>
+        <code>        static    public            bool
+    <strong>isApiValid</strong>(string $name, object|callable $object)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>object|callable</td>
+                <td>$object</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>bool</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_apiFactory">
+        <div class="location">at line 153</div>
+        <code>        static    public            object
+    <strong>apiFactory</strong>(string $name, string $class, array $arguments = array())</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$class</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$arguments</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>object</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/ErrorException.html"><abbr title="MVCFundamental\Exception\ErrorException">ErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_setFrontController">
+        <div class="location">at line 184</div>
+        <code>        static    public            
+    <strong>setFrontController</strong>(<a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a> $app)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a></td>
+                <td>$app</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getFrontController">
+        <div class="location">at line 192</div>
+        <code>        static    public            <a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a>
+    <strong>getFrontController</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_boot">
+        <div class="location">at line 206</div>
+        <code>        static    public            void
+    <strong>boot</strong>(<a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a> $app)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a></td>
+                <td>$app</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/ErrorException.html"><abbr title="MVCFundamental\Exception\ErrorException">ErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_terminate">
+        <div class="location">at line 286</div>
+        <code>        static    public            mixed
+    <strong>terminate</strong>(<a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a> $app)</code>
+    </h3>
+    <div class="details">
+        <p>This must be called when the system terminates its run</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a></td>
+                <td>$app</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>mixed</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_abort">
+        <div class="location">at line 299</div>
+        <code>        static    public            void
+    <strong>abort</strong>(<abbr title="MVCFundamental\Exception">Exception</abbr> $e)</code>
+    </h3>
+    <div class="details">
+        <p>This must abort a runtime safely</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="MVCFundamental\Exception">Exception</abbr></td>
+                <td>$e</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_handleException">
+        <div class="location">at line 309</div>
+        <code>        static    public            void
+    <strong>handleException</strong>(<abbr title="MVCFundamental\Exception">Exception</abbr> $e)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="MVCFundamental\Exception">Exception</abbr></td>
+                <td>$e</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/ErrorException.html"><abbr title="MVCFundamental\Exception\ErrorException">ErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_handleError">
+        <div class="location">at line 334</div>
+        <code>        static    public            void
+    <strong>handleError</strong>(int $errno, string $errstr = &#039;&#039;, string $errfile = &#039;&#039;, int $errline, array $errcontext = array())</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>int</td>
+                <td>$errno</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$errstr</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$errfile</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$errline</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$errcontext</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/ErrorException.html"><abbr title="MVCFundamental\Exception\ErrorException">ErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_handleShutdown">
+        <div class="location">at line 347</div>
+        <code>        static    public            void
+    <strong>handleShutdown</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>This must handle runtime shutdown</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_log">
+        <div class="location">at line 358</div>
+        <code>        static    public            mixed
+    <strong>log</strong>(mixed $level, string $message, array $context = array())</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>mixed</td>
+                <td>$level</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$context</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>mixed</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+    
+            </div>
+            <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/" target="_top">Sami, the API Documentation Generator</a>.
+    </div>
+    </body>
+</html>

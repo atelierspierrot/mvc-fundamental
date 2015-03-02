@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow, all" />
+        <title>MVCFundamental\FrontController | MVC Fundamental</title>
+                    <link rel="stylesheet" type="text/css" href="../stylesheet.css">
+                            </head>
+        <body id="class">
+            <div class="header">
+        <ul>
+            <li><a href="../classes.html">Classes</a></li>
+                            <li><a href="../namespaces.html">Namespaces</a></li>
+                        <li><a href="../interfaces.html">Interfaces</a></li>
+            <li><a href="../traits.html">Traits</a></li>
+            <li><a href="../doc-index.html">Index</a></li>
+            
+        </ul>
+
+        <div id="title">MVC Fundamental</div>
+
+            <div class="type">Class</div>
+    <h1><a href="../MVCFundamental.html">MVCFundamental</a>\FrontController</h1>
+    </div>
+        <div class="content">
+                <p>    class
+    <strong>FrontController</strong>        implements
+        <a href="../MVCFundamental/Interfaces/FrontControllerInterface.html"><abbr title="MVCFundamental\Interfaces\FrontControllerInterface">FrontControllerInterface</abbr></a></p>
+
+            <div class="description">
+            <p>The default FrontController</p>
+            <p>
+</p>
+        </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <table>
+                    <tr>
+                <td class="type">
+                    
+                </td>
+                <td class="last">
+                    <a href="#method___construct">__construct</a>(array $options = array())
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <abbr title="MVCFundamental\$this">$this</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_boot">boot</a>()
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    bool
+                </td>
+                <td class="last">
+                    <a href="#method_isMode">isMode</a>(string $mode)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <abbr title="MVCFundamental\$this">$this</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_setOptions">setOptions</a>(array $options)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    void
+                </td>
+                <td class="last">
+                    <a href="#method_run">run</a>(<a href="../MVCFundamental/Interfaces/RequestInterface.html"><abbr title="MVCFundamental\Interfaces\RequestInterface">RequestInterface</abbr></a> $request = null)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <a href="../MVCFundamental/Interfaces/ResponseInterface.html"><abbr title="MVCFundamental\Interfaces\ResponseInterface">ResponseInterface</abbr></a>
+                </td>
+                <td class="last">
+                    <a href="#method_handle">handle</a>(<a href="../MVCFundamental/Interfaces/RequestInterface.html"><abbr title="MVCFundamental\Interfaces\RequestInterface">RequestInterface</abbr></a> $request = null)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    void
+                </td>
+                <td class="last">
+                    <a href="#method_send">send</a>(<a href="../MVCFundamental/Interfaces/ResponseInterface.html"><abbr title="MVCFundamental\Interfaces\ResponseInterface">ResponseInterface</abbr></a> $response = null)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <abbr title="MVCFundamental\$this">$this</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_addRoute">addRoute</a>(string $route, mixed $callback, string $method = &#039;get&#039;)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    string
+                </td>
+                <td class="last">
+                    <a href="#method_render">render</a>(string $view_file, array $params = array(), string $type = &#039;global&#039;)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    string
+                </td>
+                <td class="last">
+                    <a href="#method_callRoute">callRoute</a>(string $route, array $arguments = array(), string $method = &#039;get&#039;)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    string
+                </td>
+                <td class="last">
+                    <a href="#method_callControllerAction">callControllerAction</a>(null|string $controller = null, null|string $action = null, array $arguments = array())
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    void
+                </td>
+                <td class="last">
+                    <a href="#method_error">error</a>(string $message, int $status = 500, int $code, string $filename = __FILE__, int $lineno = __LINE__)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    void
+                </td>
+                <td class="last">
+                    <a href="#method_redirect">redirect</a>(string $url, bool $follow = false)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <abbr title="MVCFundamental\$this">$this</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_on">on</a>(<abbr title="MVCFundamental\$event">$event</abbr> $event, <abbr title="MVCFundamental\$callback">$callback</abbr> $callback)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <abbr title="MVCFundamental\$this">$this</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_off">off</a>(<abbr title="MVCFundamental\$event">$event</abbr> $event, <abbr title="MVCFundamental\$callback">$callback</abbr> $callback)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    <abbr title="MVCFundamental\$this">$this</abbr>
+                </td>
+                <td class="last">
+                    <a href="#method_trigger">trigger</a>(string $event, mixed $subject = null)
+                    <p>
+</p>
+                </td>
+                <td></td>
+            </tr>
+            </table>
+
+
+        <h2>Details</h2>
+
+                        <h3 id="method___construct">
+        <div class="location">at line 105</div>
+        <code>            public            
+    <strong>__construct</strong>(array $options = array())</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_boot">
+        <div class="location">at line 116</div>
+        <code>            public            <abbr title="MVCFundamental\$this">$this</abbr>
+    <strong>boot</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="MVCFundamental\$this">$this</abbr></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_isMode">
+        <div class="location">at line 154</div>
+        <code>            public            bool
+    <strong>isMode</strong>(string $mode)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$mode</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>bool</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_setOptions">
+        <div class="location">at line 170</div>
+        <code>            public            <abbr title="MVCFundamental\$this">$this</abbr>
+    <strong>setOptions</strong>(array $options)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>array</td>
+                <td>$options</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="MVCFundamental\$this">$this</abbr></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_run">
+        <div class="location">at line 186</div>
+        <code>            public            void
+    <strong>run</strong>(<a href="../MVCFundamental/Interfaces/RequestInterface.html"><abbr title="MVCFundamental\Interfaces\RequestInterface">RequestInterface</abbr></a> $request = null)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Interfaces/RequestInterface.html"><abbr title="MVCFundamental\Interfaces\RequestInterface">RequestInterface</abbr></a></td>
+                <td>$request</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/Exception.html"><abbr title="MVCFundamental\Exception\Exception">Exception</abbr></a></td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/NotFoundException.html"><abbr title="MVCFundamental\Exception\NotFoundException">NotFoundException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_handle">
+        <div class="location">at line 198</div>
+        <code>            public            <a href="../MVCFundamental/Interfaces/ResponseInterface.html"><abbr title="MVCFundamental\Interfaces\ResponseInterface">ResponseInterface</abbr></a>
+    <strong>handle</strong>(<a href="../MVCFundamental/Interfaces/RequestInterface.html"><abbr title="MVCFundamental\Interfaces\RequestInterface">RequestInterface</abbr></a> $request = null)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Interfaces/RequestInterface.html"><abbr title="MVCFundamental\Interfaces\RequestInterface">RequestInterface</abbr></a></td>
+                <td>$request</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><a href="../MVCFundamental/Interfaces/ResponseInterface.html"><abbr title="MVCFundamental\Interfaces\ResponseInterface">ResponseInterface</abbr></a></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_send">
+        <div class="location">at line 221</div>
+        <code>            public            void
+    <strong>send</strong>(<a href="../MVCFundamental/Interfaces/ResponseInterface.html"><abbr title="MVCFundamental\Interfaces\ResponseInterface">ResponseInterface</abbr></a> $response = null)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Interfaces/ResponseInterface.html"><abbr title="MVCFundamental\Interfaces\ResponseInterface">ResponseInterface</abbr></a></td>
+                <td>$response</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_addRoute">
+        <div class="location">at line 236</div>
+        <code>            public            <abbr title="MVCFundamental\$this">$this</abbr>
+    <strong>addRoute</strong>(string $route, mixed $callback, string $method = &#039;get&#039;)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$route</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$callback</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="MVCFundamental\$this">$this</abbr></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_render">
+        <div class="location">at line 250</div>
+        <code>            public            string
+    <strong>render</strong>(string $view_file, array $params = array(), string $type = &#039;global&#039;)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$view_file</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$params</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$type</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_callRoute">
+        <div class="location">at line 265</div>
+        <code>            public            string
+    <strong>callRoute</strong>(string $route, array $arguments = array(), string $method = &#039;get&#039;)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$route</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$arguments</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$method</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/Exception.html"><abbr title="MVCFundamental\Exception\Exception">Exception</abbr></a></td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/InternalServerErrorException.html"><abbr title="MVCFundamental\Exception\InternalServerErrorException">InternalServerErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/NotFoundException.html"><abbr title="MVCFundamental\Exception\NotFoundException">NotFoundException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_callControllerAction">
+        <div class="location">at line 361</div>
+        <code>            public            string
+    <strong>callControllerAction</strong>(null|string $controller = null, null|string $action = null, array $arguments = array())</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>null|string</td>
+                <td>$controller</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>null|string</td>
+                <td>$action</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$arguments</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/InternalServerErrorException.html"><abbr title="MVCFundamental\Exception\InternalServerErrorException">InternalServerErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_error">
+        <div class="location">at line 433</div>
+        <code>            public            void
+    <strong>error</strong>(string $message, int $status = 500, int $code, string $filename = __FILE__, int $lineno = __LINE__)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$message</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$status</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$code</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$filename</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$lineno</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/AccessForbiddenException.html"><abbr title="MVCFundamental\Exception\AccessForbiddenException">AccessForbiddenException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/ErrorException.html"><abbr title="MVCFundamental\Exception\ErrorException">ErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/InternalServerErrorException.html"><abbr title="MVCFundamental\Exception\InternalServerErrorException">InternalServerErrorException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><a href="../MVCFundamental/Exception/NotFoundException.html"><abbr title="MVCFundamental\Exception\NotFoundException">NotFoundException</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_redirect">
+        <div class="location">at line 457</div>
+        <code>            public            void
+    <strong>redirect</strong>(string $url, bool $follow = false)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$follow</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>void</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_on">
+        <div class="location">at line 477</div>
+        <code>            public            <abbr title="MVCFundamental\$this">$this</abbr>
+    <strong>on</strong>(<abbr title="MVCFundamental\$event">$event</abbr> $event, <abbr title="MVCFundamental\$callback">$callback</abbr> $callback)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="MVCFundamental\$event">$event</abbr></td>
+                <td>$event</td>
+                <td>The event name</td>
+            </tr>
+                    <tr>
+                <td><abbr title="MVCFundamental\$callback">$callback</abbr></td>
+                <td>$callback</td>
+                <td>The event callback</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="MVCFundamental\$this">$this</abbr></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_off">
+        <div class="location">at line 495</div>
+        <code>            public            <abbr title="MVCFundamental\$this">$this</abbr>
+    <strong>off</strong>(<abbr title="MVCFundamental\$event">$event</abbr> $event, <abbr title="MVCFundamental\$callback">$callback</abbr> $callback)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="MVCFundamental\$event">$event</abbr></td>
+                <td>$event</td>
+                <td>The event name</td>
+            </tr>
+                    <tr>
+                <td><abbr title="MVCFundamental\$callback">$callback</abbr></td>
+                <td>$callback</td>
+                <td>The event callback</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="MVCFundamental\$this">$this</abbr></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+                <h3 id="method_trigger">
+        <div class="location">at line 513</div>
+        <code>            public            <abbr title="MVCFundamental\$this">$this</abbr>
+    <strong>trigger</strong>(string $event, mixed $subject = null)</code>
+    </h3>
+    <div class="details">
+        <p>
+</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$event</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>mixed</td>
+                <td>$subject</td>
+                <td>The subject of the event</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td><abbr title="MVCFundamental\$this">$this</abbr></td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table>
+                    <tr>
+                <td><a href="http://php.net/Exception"><abbr title="Exception">Exception</abbr></a></td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+    
+            </div>
+            <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/" target="_top">Sami, the API Documentation Generator</a>.
+    </div>
+    </body>
+</html>
