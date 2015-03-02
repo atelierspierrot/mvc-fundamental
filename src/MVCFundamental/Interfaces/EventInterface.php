@@ -22,7 +22,7 @@
 
 namespace MVCFundamental\Interfaces;
 
-use \Library\Event\EventInterface as BaseEventInterface;
+use \EventManager\EventInterface as BaseEventInterface;
 
 /**
  * Interface EventInterface

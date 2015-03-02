@@ -22,7 +22,7 @@
 
 namespace MVCFundamental\Basic;
 
-use \Library\Event\EventManager as BaseEventManager;
+use \EventManager\EventManager as BaseEventManager;
 use \MVCFundamental\Interfaces\EventManagerInterface;
 
 /**

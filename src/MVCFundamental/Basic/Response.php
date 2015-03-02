@@ -22,7 +22,7 @@
 
 namespace MVCFundamental\Basic;
 
-use \Library\HttpFundamental\Response as BaseResponse;
+use \HttpFundamental\Response as BaseResponse;
 use \MVCFundamental\Interfaces\ResponseInterface;
 use \Patterns\Commons\HttpStatus;
 

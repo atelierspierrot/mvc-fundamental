@@ -23,7 +23,7 @@
 namespace MVCFundamental;
 
 use \Patterns\Traits\SingletonTrait;
-use \Library\ServiceContainer\ServiceContainer;
+use \ServiceContainer\ServiceContainer;
 use \MVCFundamental\Interfaces\FrontControllerInterface;
 use \MVCFundamental\Interfaces\AppKernelInterface;
 use \MVCFundamental\Exception\ErrorException;

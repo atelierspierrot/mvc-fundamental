@@ -22,7 +22,7 @@
 
 namespace MVCFundamental\Basic;
 
-use \Library\HttpFundamental\Request as BaseRequest;
+use \HttpFundamental\Request as BaseRequest;
 use \MVCFundamental\Interfaces\RequestInterface;
 
 /**
