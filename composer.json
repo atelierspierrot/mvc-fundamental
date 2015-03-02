@@ -18,7 +18,10 @@
         "php": ">=5.4.0",
         "psr/log": "1.0.*",
         "atelierspierrot/patterns": "1.0.*",
-        "atelierspierrot/library": "1.1.*"
+        "atelierspierrot/library": "2.0.0-BETA",
+        "atelierspierrot/service-container": "1.*",
+        "atelierspierrot/http-fundamental": "1.*",
+        "atelierspierrot/event-manager": "1.*"
     },
     "require-dev": {
         "sami/sami": "2.*",
