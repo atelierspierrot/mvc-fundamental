@@ -8,8 +8,8 @@
 
 namespace Demo;
 
-use \Library\Event\AbstractObservable;
-use \Library\Event\ObservableInterface;
+use \EventManager\AbstractObservable;
+use \EventManager\ObservableInterface;
 
 class TestObservable
     extends AbstractObservable
