@@ -24,7 +24,7 @@ namespace MVCFundamental\Basic;
 
 use \HttpFundamental\Response as BaseResponse;
 use \MVCFundamental\Interfaces\ResponseInterface;
-use \Patterns\Commons\HttpStatus;
+use \HttpFundamental\HttpStatus;
 
 /**
  * Class Response

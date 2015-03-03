@@ -28,7 +28,7 @@ use \MVCFundamental\Interfaces\ErrorControllerInterface;
 use \MVCFundamental\Exception\NotFoundException;
 use \MVCFundamental\Exception\AccessForbiddenException;
 use \MVCFundamental\Exception\InternalServerErrorException;
-use \Patterns\Commons\HttpStatus;
+use \HttpFundamental\HttpStatus;
 
 /**
  * Class ErrorController
