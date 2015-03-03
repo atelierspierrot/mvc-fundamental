@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="robots" content="index, follow, all" />
+        <title>MVCFundamental\Commons\Helper | MVC Fundamental</title>
+                    <link rel="stylesheet" type="text/css" href="../../stylesheet.css">
+                            </head>
+        <body id="class">
+            <div class="header">
+        <ul>
+            <li><a href="../../classes.html">Classes</a></li>
+                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                        <li><a href="../../interfaces.html">Interfaces</a></li>
+            <li><a href="../../traits.html">Traits</a></li>
+            <li><a href="../../doc-index.html">Index</a></li>
+            
+        </ul>
+
+        <div id="title">MVC Fundamental</div>
+
+            <div class="type">Class</div>
+    <h1><a href="../../MVCFundamental/Commons.html">MVCFundamental\Commons</a>\Helper</h1>
+    </div>
+        <div class="content">
+                <p>    class
+    <strong>Helper</strong></p>
+
+            <div class="description">
+            <p>This is the global app Helper</p>
+            <p>
+</p>
+        </div>
+    
+    
+    
+            <h2>Methods</h2>
+
+            <table>
+                    <tr>
+                <td class="type">
+                    static&nbsp;array
+                </td>
+                <td class="last">
+                    <a href="#method_getDefaultEnvParameters">getDefaultEnvParameters</a>()
+                    <p>Get the default environment vars to load in views and calling controller's actions</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;bool
+                </td>
+                <td class="last">
+                    <a href="#method_classImplements">classImplements</a>(<abbr title="MVCFundamental\Commons\$class_name">$class_name</abbr> $class_name, <abbr title="MVCFundamental\Commons\$interface_name">$interface_name</abbr> $interface_name)
+                    <p>Test if a class implements an interface</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;string
+                </td>
+                <td class="last">
+                    <a href="#method_getPropertyName">getPropertyName</a>(string $name = &#039;&#039;, string $replace = &#039;_&#039;, bool $capitalize_first_char = true)
+                    <p>Get a safe class property name in camel case</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;string
+                </td>
+                <td class="last">
+                    <a href="#method_getMethodName">getMethodName</a>(<abbr title="MVCFundamental\Commons\$property_name">$property_name</abbr> $property_name)
+                    <p>Get a safe class method name in camel case</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;mixed
+                </td>
+                <td class="last">
+                    <a href="#method_fetchArguments">fetchArguments</a>(null $method_name = null, null $arguments = null, null $class_name = null)
+                    <p>Call a callback fetching organized arguments depending on its declaration</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;
+                </td>
+                <td class="last">
+                    <a href="#method_debug">debug</a>()
+                    <p>Hard debug anything</p>
+                </td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type">
+                    static&nbsp;
+                </td>
+                <td class="last">
+                    <a href="#method_exceptionHandler">exceptionHandler</a>(<abbr title="MVCFundamental\Commons\Exception">Exception</abbr> $e, bool $plain_text = false)
+                    <p>Get a safe exception info</p>
+                </td>
+                <td></td>
+            </tr>
+            </table>
+
+
+        <h2>Details</h2>
+
+                        <h3 id="method_getDefaultEnvParameters">
+        <div class="location">at line 39</div>
+        <code>        static    public            array
+    <strong>getDefaultEnvParameters</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>Get the default environment vars to load in views and calling controller's actions</p>
+        <p>
+</p>
+        <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>array</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_classImplements">
+        <div class="location">at line 56</div>
+        <code>        static    public            bool
+    <strong>classImplements</strong>(<abbr title="MVCFundamental\Commons\$class_name">$class_name</abbr> $class_name, <abbr title="MVCFundamental\Commons\$interface_name">$interface_name</abbr> $interface_name)</code>
+    </h3>
+    <div class="details">
+        <p>Test if a class implements an interface</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="MVCFundamental\Commons\$class_name">$class_name</abbr></td>
+                <td>$class_name</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td><abbr title="MVCFundamental\Commons\$interface_name">$interface_name</abbr></td>
+                <td>$interface_name</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>bool</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getPropertyName">
+        <div class="location">at line 71</div>
+        <code>        static    public            string
+    <strong>getPropertyName</strong>(string $name = &#039;&#039;, string $replace = &#039;_&#039;, bool $capitalize_first_char = true)</code>
+    </h3>
+    <div class="details">
+        <p>Get a safe class property name in camel case</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$replace</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$capitalize_first_char</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_getMethodName">
+        <div class="location">at line 81</div>
+        <code>        static    public            string
+    <strong>getMethodName</strong>(<abbr title="MVCFundamental\Commons\$property_name">$property_name</abbr> $property_name)</code>
+    </h3>
+    <div class="details">
+        <p>Get a safe class method name in camel case</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="MVCFundamental\Commons\$property_name">$property_name</abbr></td>
+                <td>$property_name</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>string</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_fetchArguments">
+        <div class="location">at line 93</div>
+        <code>        static    public            mixed
+    <strong>fetchArguments</strong>(null $method_name = null, null $arguments = null, null $class_name = null)</code>
+    </h3>
+    <div class="details">
+        <p>Call a callback fetching organized arguments depending on its declaration</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td>null</td>
+                <td>$method_name</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>null</td>
+                <td>$arguments</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>null</td>
+                <td>$class_name</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table>
+        <tr>
+            <td>mixed</td>
+            <td>
+</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_debug">
+        <div class="location">at line 105</div>
+        <code>        static    public            
+    <strong>debug</strong>()</code>
+    </h3>
+    <div class="details">
+        <p>Hard debug anything</p>
+        <p>
+</p>
+        <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+                <h3 id="method_exceptionHandler">
+        <div class="location">at line 120</div>
+        <code>        static    public            
+    <strong>exceptionHandler</strong>(<abbr title="MVCFundamental\Commons\Exception">Exception</abbr> $e, bool $plain_text = false)</code>
+    </h3>
+    <div class="details">
+        <p>Get a safe exception info</p>
+        <p>
+</p>
+        <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table>
+                    <tr>
+                <td><abbr title="MVCFundamental\Commons\Exception">Exception</abbr></td>
+                <td>$e</td>
+                <td>
+</td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$plain_text</td>
+                <td>
+</td>
+            </tr>
+            </table>
+
+            
+            
+            
+                    </div>
+    </div>
+
+    
+            </div>
+            <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/" target="_top">Sami, the API Documentation Generator</a>.
+    </div>
+    </body>
+</html>
