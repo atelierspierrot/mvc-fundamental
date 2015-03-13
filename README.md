@@ -1,25 +1,34 @@
 PHP MVC Fundamental
 ===================
 
+[![demonstation](http://img.ateliers-pierrot-static.fr/see-the-demo.svg)](http://sites.ateliers-pierrot.fr/mvc-fundamental/)
+[![documentation](http://img.ateliers-pierrot-static.fr/read-the-doc.svg)](http://docs.ateliers-pierrot.fr/mvc-fundamental/)
+
 An easy-to-use and light-weight (around 1Mo with default dependencies) 
 MVC system to build simple web-apps.
 
 
-## Installation
+Installation
+------------
 
-Add the package to your [Composer](http://getcomposer.org/) requirements:
+For a complete information about how to install this package and load its namespace, 
+please have a look at [our *USAGE* documentation](http://github.com/atelierspierrot/atelierspierrot/blob/master/USAGE.md).
+
+If you are a [Composer](http://getcomposer.org/) user, just add the package to the 
+requirements of your project's `composer.json` manifest file:
 
 ```json
-"require": {
-    "your/depdencies": "*",
-    "atelierspierrot/mvc-fundamental": "dev-master"
-}
+"atelierspierrot/mvc-fundamental": "dev-master"
 ```
+
+You can use a specific release or the latest release of a major version using the appropriate
+[version constraint](http://getcomposer.org/doc/01-basic-usage.md#package-versions).
 
 Please note that this application requires PHP version 5.4 or higher.
 
 
-## Usage
+Usage
+-----
 
 The idea of this package is to build a simple web-app easily and quickly, 
 with as few lines of code as possible on a robust basic architecture.
@@ -36,7 +45,8 @@ Your custom objects MUST implement one of these interfaces (a good practice coul
 be to extend the default objects).
 
 
-## Quick start
+Quick start
+-----------
 
 ### The front controller
 
@@ -376,7 +386,8 @@ methods of the kernel. The basic life-cycle schema is something like:
     $kernel->terminate();
 
 
-## Author & License
+Author & License
+----------------
 
 >    PHP MVC Fundamental
 
