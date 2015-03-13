@@ -32,6 +32,8 @@ use \HttpFundamental\HttpStatus;
 
 /**
  * Class ErrorController
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class ErrorController
     implements ControllerInterface, ErrorControllerInterface

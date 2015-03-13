@@ -25,6 +25,7 @@ namespace MVCFundamental\Interfaces;
 /**
  * Interface RouteInterface
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface RouteInterface

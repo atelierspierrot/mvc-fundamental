@@ -27,6 +27,8 @@ use \MVCFundamental\Commons\ViewFileTrait;
 
 /**
  * Class Template
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Template
     implements TemplateInterface

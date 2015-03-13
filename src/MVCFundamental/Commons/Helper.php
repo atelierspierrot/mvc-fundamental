@@ -28,6 +28,8 @@ use \Library\Helper\Text as TextHelper;
 
 /**
  * This is the global app Helper
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Helper
 {

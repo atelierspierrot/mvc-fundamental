@@ -28,6 +28,8 @@ use \MVCFundamental\Interfaces\LocatorInterface;
 
 /**
  * Class Locator
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Locator
     implements LocatorInterface

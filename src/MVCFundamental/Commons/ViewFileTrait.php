@@ -28,6 +28,8 @@ use \Patterns\Traits\TemplateViewTrait;
 
 /**
  * ViewFileTrait
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 trait ViewFileTrait
 {

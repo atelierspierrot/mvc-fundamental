@@ -24,6 +24,8 @@ namespace MVCFundamental\Interfaces;
 
 /**
  * FrontControllerAwareInterface
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 interface FrontControllerAwareInterface
 {

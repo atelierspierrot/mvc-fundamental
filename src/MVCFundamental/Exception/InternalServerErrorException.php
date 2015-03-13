@@ -24,6 +24,8 @@ namespace MVCFundamental\Exception;
 
 /**
  * Class InternalServerErrorException
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class InternalServerErrorException
     extends Exception

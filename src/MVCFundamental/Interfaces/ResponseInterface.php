@@ -27,6 +27,7 @@ use \Patterns\Interfaces\ResponseInterface as BaseResponseInterface;
 /**
  * Interface ResponseInterface
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface ResponseInterface

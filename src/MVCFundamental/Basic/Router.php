@@ -29,6 +29,8 @@ use \Patterns\Commons\Collection;
 
 /**
  * Class Router
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Router
     implements RouterInterface

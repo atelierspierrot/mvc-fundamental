@@ -24,6 +24,8 @@ namespace MVCFundamental\Exception;
 
 /**
  * Class NotFoundException
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class NotFoundException
     extends Exception

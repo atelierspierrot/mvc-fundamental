@@ -27,6 +27,8 @@ use \MVCFundamental\Interfaces\EventInterface;
 
 /**
  * Class Event
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Event
     extends BaseEvent

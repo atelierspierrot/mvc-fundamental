@@ -28,6 +28,7 @@ use \Patterns\Interfaces\OptionableInterface;
 /**
  * Interface LayoutInterface
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface LayoutInterface

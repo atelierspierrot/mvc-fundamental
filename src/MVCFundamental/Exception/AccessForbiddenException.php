@@ -24,6 +24,8 @@ namespace MVCFundamental\Exception;
 
 /**
  * Class AccessForbiddenException
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class AccessForbiddenException
     extends Exception

@@ -35,6 +35,8 @@ use \Library\Logger;
 
 /**
  * Class AppKernel: the root core of the application
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class AppKernel
     extends ServiceContainer

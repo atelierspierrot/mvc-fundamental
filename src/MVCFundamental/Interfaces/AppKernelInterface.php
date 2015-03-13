@@ -26,6 +26,8 @@ use \Patterns\Interfaces\SingletonInterface;
 
 /**
  * Interface AppKernelInterface
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 interface AppKernelInterface
     extends SingletonInterface, ServiceContainerProviderInterface, FrontControllerAwareInterface

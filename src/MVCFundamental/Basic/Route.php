@@ -26,6 +26,8 @@ use \MVCFundamental\Interfaces\RouteInterface;
 
 /**
  * Class Route
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Route
     implements RouteInterface

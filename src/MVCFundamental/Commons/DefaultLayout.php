@@ -27,6 +27,8 @@ use \MVCFundamental\AppKernel;
 
 /**
  * A default Layout with a "classic" web-page canvas
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class DefaultLayout
     extends Layout

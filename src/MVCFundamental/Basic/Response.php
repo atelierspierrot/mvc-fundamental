@@ -28,6 +28,8 @@ use \HttpFundamental\HttpStatus;
 
 /**
  * Class Response
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Response
     extends BaseResponse

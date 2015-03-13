@@ -27,6 +27,7 @@ use \Patterns\Interfaces\RequestInterface as BaseRequestInterface;
 /**
  * Interface RequestInterface
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface RequestInterface

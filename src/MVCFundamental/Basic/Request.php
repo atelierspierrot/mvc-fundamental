@@ -27,6 +27,8 @@ use \MVCFundamental\Interfaces\RequestInterface;
 
 /**
  * Class Request
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Request
     extends BaseRequest

@@ -32,6 +32,8 @@ use \MVCFundamental\Commons\Helper;
 
 /**
  * Class Layout
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Layout
     implements LayoutInterface

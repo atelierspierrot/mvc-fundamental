@@ -25,6 +25,7 @@ namespace MVCFundamental\Interfaces;
 /**
  * Interface TemplateInterface
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface TemplateInterface

@@ -27,6 +27,8 @@ use \MVCFundamental\Interfaces\EventManagerInterface;
 
 /**
  * Class EventManager
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class EventManager
     extends BaseEventManager

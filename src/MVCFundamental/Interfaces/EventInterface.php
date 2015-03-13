@@ -27,6 +27,7 @@ use \EventManager\EventInterface as BaseEventInterface;
 /**
  * Interface EventInterface
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface EventInterface

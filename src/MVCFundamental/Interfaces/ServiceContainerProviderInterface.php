@@ -24,6 +24,9 @@ namespace MVCFundamental\Interfaces;
 
 /**
  * Interface ServiceContainerProviderInterface
+ *
+ * @author  piwi <me@e-piwi.fr>
+ * @api
  */
 interface ServiceContainerProviderInterface
 {

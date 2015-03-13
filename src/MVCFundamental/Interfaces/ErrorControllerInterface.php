@@ -25,6 +25,7 @@ namespace MVCFundamental\Interfaces;
 /**
  * Interface ErrorControllerInterface
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface ErrorControllerInterface

@@ -27,6 +27,7 @@ namespace MVCFundamental\Interfaces;
  *
  * This is kept for API verifications
  *
+ * @author  piwi <me@e-piwi.fr>
  * @api
  */
 interface ControllerInterface

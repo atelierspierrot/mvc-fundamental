@@ -27,6 +27,8 @@ use \Patterns\Interfaces\OptionableInterface;
 
 /**
  * Interface FrontControllerInterface
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 interface FrontControllerInterface
     extends SingletonInterface, OptionableInterface, ServiceContainerProviderInterface

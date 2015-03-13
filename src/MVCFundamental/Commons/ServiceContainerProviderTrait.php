@@ -31,6 +31,8 @@ use \MVCFundamental\AppKernel;
  *
  * Use with caution: this trait defines magic accessors you
  * must not overwrite in your classes.
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 trait ServiceContainerProviderTrait
 {

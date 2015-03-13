@@ -29,6 +29,8 @@ use \MVCFundamental\Interfaces\TemplateEngineInterface;
 
 /**
  * Class TemplateEngine
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class TemplateEngine
     implements TemplateEngineInterface

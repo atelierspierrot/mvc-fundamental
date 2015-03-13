@@ -26,6 +26,8 @@ use \MVCFundamental\AppKernel;
 
 /**
  * Class Exception
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class Exception
     extends \Exception

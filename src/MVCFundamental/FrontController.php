@@ -38,6 +38,8 @@ use \Library\Helper\Directory as DirectoryHelper;
 
 /**
  * The default FrontController
+ *
+ * @author  piwi <me@e-piwi.fr>
  */
 class FrontController
     implements FrontControllerInterface
