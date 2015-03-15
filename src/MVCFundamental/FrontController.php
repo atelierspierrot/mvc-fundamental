@@ -107,7 +107,6 @@ class FrontController
         $this
             ->setOptions(self::$_defaults)
             ->setOptions($options)
-            ->boot()
         ;
     }
 
@@ -143,6 +142,7 @@ class FrontController
             }
 
             self::$_is_booted = true;
+            $this->trigger('boot');
         }
         return $this;
     }
@@ -185,6 +185,7 @@ class FrontController
      */
     public function run(RequestInterface $request = null)
     {
+        $this->boot();
         $response = $this->handle($request);
         $this->send($response);
         AppKernel::terminate($this);
@@ -196,6 +197,7 @@ class FrontController
      */
     public function handle(RequestInterface $request = null)
     {
+        $this->boot();
         if (is_null($request)) {
             $request = $this->get('request');
         }
@@ -218,6 +220,7 @@ class FrontController
      */
     public function send(ResponseInterface $response = null)
     {
+        $this->boot();
         if (is_null($response)) {
             $response = $this->get('response');
         }
@@ -232,6 +235,7 @@ class FrontController
      */
     public function addRoute($route, $callback, $method = 'get')
     {
+        $this->boot();
         $class = $this->getOption('route_item');
         $this->get('router')->addRoute(new $class($route, $callback, $method));
         return $this;
@@ -245,6 +249,7 @@ class FrontController
      */
     public function render($view_file, array $params = array(), $type = 'global')
     {
+        $this->boot();
         return $this->get('template_engine')->renderTemplate($view_file, $params);
     }
 
@@ -259,12 +264,15 @@ class FrontController
      */
     public function callRoute($route, array $arguments = array(), $method = 'get')
     {
+        $this->boot();
+
         @list($callback, $params) = $this->get('router')->distribute(
             $route, $arguments, $method
         );
 
 /*/
 header('Content-Type: text/plain');
+echo "route is: ".var_export($route,1).PHP_EOL;
 echo "callback is: ".var_export($callback,1).PHP_EOL;
 echo "arguments are: ".var_export($arguments,1).PHP_EOL;
 exit('-- out --');
@@ -352,6 +360,7 @@ exit('-- out --');
      */
     public function callControllerAction($controller = null, $action = null, array $arguments = array())
     {
+        $this->boot();
         $controller_name = $controller;
 
         if (empty($controller)) {
@@ -423,6 +432,7 @@ exit('-- out --');
      */
     public function error($message, $status = 500, $code = 0, $filename = __FILE__, $lineno = __LINE__)
     {
+        $this->boot();
         switch ($status) {
             case 500:
                 throw new InternalServerErrorException($message, $code, 1, $code, $filename, $lineno);
@@ -446,6 +456,7 @@ exit('-- out --');
      */
     public function redirect($url, $follow = false)
     {
+        $this->boot();
         $base_url = $this->get('request')->getBaseUrl();
         $url = $base_url.str_replace($base_url, '', $url);
         if ($follow) {
@@ -466,7 +477,9 @@ exit('-- out --');
     public function on($event, $callback)
     {
         try {
-            $this->get('event_manager')->addListener($event, $callback);
+            $this
+                ->boot()
+                ->get('event_manager')->addListener($event, $callback);
         } catch (\Exception $e) {
             throw $e;
         }
@@ -482,7 +495,9 @@ exit('-- out --');
     public function off($event, $callback)
     {
         try {
-            $this->get('event_manager')->removeListener($event, $callback);
+            $this
+                ->boot()
+                ->get('event_manager')->removeListener($event, $callback);
         } catch (\Exception $e) {
             throw $e;
         }
@@ -498,7 +513,9 @@ exit('-- out --');
     public function trigger($event, $subject = null)
     {
         try {
-            $this->get('event_manager')->triggerEvent($event, $subject);
+            $this
+                ->boot()
+                ->get('event_manager')->triggerEvent($event, $subject);
         } catch (\Exception $e) {
             throw $e;
         }

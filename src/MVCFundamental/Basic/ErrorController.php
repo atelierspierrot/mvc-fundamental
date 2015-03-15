@@ -80,8 +80,12 @@ class ErrorController
      */
     public function fatalError(\Exception $e)
     {
+        $content = $this->_getProductionErrorMessage($e, 500);
+        if (FrontController::getInstance()->isMode('dev')) {
+            $content .= $this->_getExceptionMessage($e, true);
+        }
         $this->_render(
-            $this->_getProductionErrorMessage($e, 500),
+            $content,
             'Internal server error',
             HttpStatus::ERROR
         );
@@ -95,8 +99,12 @@ class ErrorController
      */
     public function notFoundError(\Exception $e)
     {
+        $content = $this->_getProductionErrorMessage($e, 404);
+        if (FrontController::getInstance()->isMode('dev')) {
+            $content .= $this->_getExceptionMessage($e, true);
+        }
         $this->_render(
-            $this->_getProductionErrorMessage($e, 404),
+            $content,
             'Page not found',
             HttpStatus::NOT_FOUND
         );
@@ -110,8 +118,12 @@ class ErrorController
      */
     public function authorizationError(\Exception $e)
     {
+        $content = $this->_getProductionErrorMessage($e, 403);
+        if (FrontController::getInstance()->isMode('dev')) {
+            $content .= $this->_getExceptionMessage($e, true);
+        }
         $this->_render(
-            $this->_getProductionErrorMessage($e, 403),
+            $content,
             'Access forbidden',
             HttpStatus::UNAUTHORIZED
         );
@@ -149,10 +161,10 @@ class ErrorController
 
     /**
      * @param   \Exception  $e
-     * @param   bool        $primary
+     * @param   int         $primary Flag: `0` means primary message, `1` means secondary one, `2` to only have a separator
      * @return  string
      */
-    protected function _getExceptionMessage(\Exception $e, $primary = true)
+    protected function _getExceptionMessage(\Exception $e, $primary = 0)
     {
         $errno      = $e->getCode();
         $errstr     = $e->getMessage();
@@ -160,25 +172,38 @@ class ErrorController
         $errline    = $e->getLine();
         $backtrace  = $e->getTraceAsString();
         $type       = get_class($e);
-        if ($primary) {
-            $message    = <<<MESSAGE
-<p>A '{$type}' error occurred with the following message:</p>
-MESSAGE;
-        } else {
-            $message    = <<<MESSAGE
-<hr />
-<p>Additionally, a '{$type}' error occurred previously with the following message:</p>
-MESSAGE;
+        $separator  = false;
+        switch ($primary) {
+            case 2:
+                $separator  = true;
+                $message    = "A '{$type}' error occurred"
+                    .(!empty($errstr) ? ' with the following message:' : '.')
+                ;
+                break;
+            case 1:
+                $separator  = true;
+                $message    = "Additionally, a '{$type}' error occurred previously"
+                    .(!empty($errstr) ? ' with the following message:' : '.')
+                ;
+                break;
+            default:
+                $message    = "A '{$type}' error occurred previously"
+                    .(!empty($errstr) ? ' with the following message:' : '.')
+                ;
+                break;
         }
-        $message    .= <<<MESSAGE
-<blockquote>{$errstr}</blockquote>
+        $content    = '';
+        if ($separator) $content .= '<hr />';
+        $content    .= '<p>'.$message.'</p>';
+        if (!empty($errstr)) $content .= '<blockquote>'.$errstr.'</blockquote>';
+        $content    .= <<<MESSAGE
 <p class="text-muted">Error with code <code>{$errno}</code> thrown in file <code>{$errfile}</code> at line <code>{$errline}</code>.</p>
 <p class="text-muted">Back trace:</p>
 <pre>
 {$backtrace}
 </pre>
 MESSAGE;
-        return $message;
+        return $content;
     }
 
 }
