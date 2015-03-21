@@ -1,6 +1,8 @@
 PHP MVC Fundamental
 ===================
 
+[![Code Climate](http://codeclimate.com/github/atelierspierrot/mvc-fundamental/badges/gpa.svg)](http://codeclimate.com/github/atelierspierrot/mvc-fundamental)
+
 An easy-to-use and light-weight (around 1Mo with default dependencies) 
 MVC system to build simple web-apps.
 
