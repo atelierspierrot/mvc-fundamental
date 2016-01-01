@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,21 @@
  * @var     string  $home_link  The URL of a clickable title
  * @var     array   $breadcrumb The page breadcrumb with items like `name => url`
  */
-if (!isset($title))     $title      = '';
-if (!isset($hat))       $hat        = '';
-if (!isset($logo))      $logo       = '';
-if (!isset($home_link)) $home_link  = '';
-if (!isset($breadcrumb))$breadcrumb = array();
+if (!isset($title)) {
+    $title      = '';
+}
+if (!isset($hat)) {
+    $hat        = '';
+}
+if (!isset($logo)) {
+    $logo       = '';
+}
+if (!isset($home_link)) {
+    $home_link  = '';
+}
+if (!isset($breadcrumb)) {
+    $breadcrumb = array();
+}
 
 ?>
 <header id="banner" class="body">

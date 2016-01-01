@@ -8,7 +8,7 @@
 // ----------------------------------
 
 // Show errors at least initially
-ini_set('display_errors','1'); error_reporting(-1);
+ini_set('display_errors', '1'); error_reporting(-1);
 
 // Set a default timezone to avoid PHP5 warnings
 $dtmz = @date_default_timezone_get();
@@ -48,7 +48,7 @@ $fctrl = \MVCFundamental\FrontController::getInstance(array(
 
     'default_controller_name'   => '\Demo\DefaultController',
 
-    'controller_locator'        => function($name) {
+    'controller_locator'        => function ($name) {
         $class = '\Demo\\'.ucfirst($name).'Controller';
         return (class_exists($class) ? $class : null);
     },

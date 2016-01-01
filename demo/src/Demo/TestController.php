@@ -44,14 +44,14 @@ class TestController
     {
         return 'Call of '.__CLASS__.'::'.__METHOD__.'<br/>'
             .'I received arguments:<br />'
-            .var_export(func_get_args(),1);
+            .var_export(func_get_args(), 1);
     }
 
     public function altargsMethod($name = 'Anonymous', RequestInterface $req, ResponseInterface $resp)
     {
         return 'Call of '.__CLASS__.'::'.__METHOD__.'<br/>'
         .'I received arguments:<br />'
-        .var_export(func_get_args(),1);
+        .var_export(func_get_args(), 1);
     }
 
     public function forwardingAction(FrontControllerInterface $app)
@@ -89,7 +89,4 @@ class TestController
         ;
         return $response;
     }
-
 }
-
-// Endfile

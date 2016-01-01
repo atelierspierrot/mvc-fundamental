@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -327,7 +327,6 @@ exit('-- out --');
                     );
                 }
                 return $this->callControllerAction($ctrl_name, $action_name, $arguments);
-
             } else {
 
                 // default controller method
@@ -336,7 +335,6 @@ exit('-- out --');
                 $action_name        = $this->get('locator')->locateControllerAction($callback, $ctrl_name);
                 if (!empty($action_name)) {
                     return $this->callControllerAction($ctrl_name, $action_name, $arguments);
-
                 } else {
 
                     // view file path
@@ -521,7 +519,4 @@ exit('-- out --');
         }
         return $this;
     }
-
 }
-
-// Endfile

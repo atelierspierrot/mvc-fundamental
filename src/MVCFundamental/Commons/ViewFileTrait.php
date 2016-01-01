@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ trait ViewFileTrait
             }
             ob_start();
             include $_view;
-            $this->setOutput( ob_get_contents() );
+            $this->setOutput(ob_get_contents());
             ob_end_clean();
         } else {
             throw new Exception(
@@ -90,7 +90,4 @@ trait ViewFileTrait
     {
         return FrontController::get('template_engine')->getTemplate($name);
     }
-
 }
-
-// Endfile
