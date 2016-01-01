@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,15 @@
 /**
  * @var array   $messages   The table of system messages as items like ` [type=info] => message `
  */
-if (!isset($messages)) $messages = array();
+if (!isset($messages)) {
+    $messages = array();
+}
 
 ?>
 <?php if (!empty($messages)) : ?>
     <?php foreach ($messages as $type=>$ctt) : ?>
         <div class="alert alert-<?php
-            echo (is_string($type) ? $type : 'info');
+            echo(is_string($type) ? $type : 'info');
         ?> alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <?php echo $ctt; ?>

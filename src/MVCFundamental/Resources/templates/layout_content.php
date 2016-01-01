@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,10 +26,18 @@
  * @var     string  $header     The main content's header
  * @var     string  $footer     The main content's footer
  */
-if (!isset($title))     $title      = '';
-if (!isset($content))   $content    = '';
-if (!isset($header))    $header     = '';
-if (!isset($footer))    $footer     = '';
+if (!isset($title)) {
+    $title      = '';
+}
+if (!isset($content)) {
+    $content    = '';
+}
+if (!isset($header)) {
+    $header     = '';
+}
+if (!isset($footer)) {
+    $footer     = '';
+}
 
 /**
  * @var     array  $contents    Table of contents defined as array items
@@ -45,7 +53,9 @@ if (!isset($footer))    $footer     = '';
  *          'footer'    => string ,
  *      )
  */
-if (!isset($contents))  $contents   = array();
+if (!isset($contents)) {
+    $contents   = array();
+}
 
 $tmp_ctt = array_filter(array(
     'title'     => $title,
@@ -53,11 +63,15 @@ $tmp_ctt = array_filter(array(
     'footer'    => $footer,
     'header'    => $header,
 ));
-if (!in_array($tmp_ctt, $contents)) array_unshift($contents, $tmp_ctt);
+if (!in_array($tmp_ctt, $contents)) {
+    array_unshift($contents, $tmp_ctt);
+}
 
 ?>
 <?php foreach ($contents as $_content) :
-    if (is_string($_content)) $_content = array('content'=>$_content);
+    if (is_string($_content)) {
+        $_content = array('content'=>$_content);
+    }
 ?>
 <section>
 
