@@ -18,7 +18,7 @@ class DefaultController
     /**
      * The directory where to search the views files
      */
-    static $views_dir = 'src/templates/';
+    public static $views_dir = 'src/templates/';
 
     public static function eventHandler(EventInterface $event)
     {
@@ -164,7 +164,4 @@ class DefaultController
     {
         return $app->callRoute('/hello/your-name', array('name'=>'your-new-name'));
     }
-
 }
-
-// Endfile

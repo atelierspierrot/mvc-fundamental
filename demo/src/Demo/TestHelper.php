@@ -20,5 +20,4 @@ class TestHelper
             ->on('event.1', array('Demo\TestController', 'eventHandler'))
         ;
     }
-
 }

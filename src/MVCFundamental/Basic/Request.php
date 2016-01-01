@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ class Request
      */
     public function getUri()
     {
-//        $uri            = $_SERVER['REQUEST_URI'];
+        //        $uri            = $_SERVER['REQUEST_URI'];
 //        $uri            = $this->getUrl();
         $uri            = parse_url($this->getUrl(), PHP_URL_PATH);
         $query          = parse_url($this->getUrl(), PHP_URL_QUERY);
@@ -86,7 +86,4 @@ class Request
         }
         return $return;
     }
-
 }
-
-// Endfile

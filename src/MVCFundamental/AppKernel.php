@@ -2,14 +2,14 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
- * 
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -254,7 +254,6 @@ class AppKernel
 
         // load services
         foreach (self::getFrontController()->getOptions() as $var=>$val) {
-
             if (array_key_exists($var, self::$_api)) {
                 self::set($var, self::apiFactory($var, $val));
             }
@@ -286,7 +285,6 @@ class AppKernel
     public static function terminate(FrontControllerInterface $app)
     {
         if (!self::$_terminated) {
-
         }
     }
 
@@ -298,7 +296,6 @@ class AppKernel
      */
     public static function abort(\Exception $e)
     {
-
     }
 
     /**
@@ -361,7 +358,4 @@ class AppKernel
             self::get('logger')->log($level, $message, $context);
         }
     }
-
 }
-
-// Endfile
