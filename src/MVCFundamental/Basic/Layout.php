@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -121,7 +121,7 @@ class Layout
     public function setChild($name, $view, array $params = array())
     {
         $this->_children[$name] = FrontController::get('template_engine')
-                                        ->getNewTemplate( $view, $params);
+                                        ->getNewTemplate($view, $params);
         return $this;
     }
 
@@ -216,7 +216,4 @@ class Layout
 
         return $this->render($this->getView(), $params);
     }
-
 }
-
-// Endfile

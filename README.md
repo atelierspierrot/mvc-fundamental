@@ -393,7 +393,7 @@ Author & License
 
 >    http://github.com/atelierspierrot/mvc-fundamental
 
->    Copyright (c) 2013-2015 Pierre Cassat and contributors
+>    Copyright (c) 2013-2016 Pierre Cassat and contributors
 
 >    Licensed under the Apache License, Version 2.0.
 

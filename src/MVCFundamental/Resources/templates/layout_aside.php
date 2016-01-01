@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,12 @@
  * @var     string  $content    The main content
  * @var     string  $title      The main content's title
  */
-if (!isset($title))     $title      = '';
-if (!isset($content))   $content    = '';
+if (!isset($title)) {
+    $title      = '';
+}
+if (!isset($content)) {
+    $content    = '';
+}
 
 /**
  * @var     array  $contents    Table of contents defined as array items
@@ -39,13 +43,17 @@ if (!isset($content))   $content    = '';
  *          'content'   => string ,
  *      )
  */
-if (!isset($contents))  $contents   = array();
+if (!isset($contents)) {
+    $contents   = array();
+}
 
 $tmp_ctt = array_filter(array(
     'title'     => $title,
     'content'   => $content
 ));
-if (!in_array($tmp_ctt, $contents)) array_unshift($contents, $tmp_ctt);
+if (!in_array($tmp_ctt, $contents)) {
+    array_unshift($contents, $tmp_ctt);
+}
 
 ?>
 <aside class="column pull-left">

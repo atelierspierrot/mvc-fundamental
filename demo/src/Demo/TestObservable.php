@@ -27,5 +27,4 @@ class TestObservable
         $this->name = $name;
         return $this;
     }
-
 }

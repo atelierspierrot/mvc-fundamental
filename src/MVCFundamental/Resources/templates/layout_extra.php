@@ -2,7 +2,7 @@
 /**
  * This file is part of the MVC-Fundamental package.
  *
- * Copyright (c) 2013-2015 Pierre Cassat <me@e-piwi.fr> and contributors
+ * Copyright (c) 2013-2016 Pierre Cassat <me@e-piwi.fr> and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,9 +25,15 @@
  * @var     string  $title      The main content's title
  * @var     array   $menu       The menu array with items like `text => url`
  */
-if (!isset($title))     $title      = '';
-if (!isset($content))   $content    = '';
-if (!isset($menu))      $menu       = array();
+if (!isset($title)) {
+    $title      = '';
+}
+if (!isset($content)) {
+    $content    = '';
+}
+if (!isset($menu)) {
+    $menu       = array();
+}
 
 /**
  * @var     array  $contents    Table of contents defined as array items
@@ -41,13 +47,17 @@ if (!isset($menu))      $menu       = array();
  *          'content'   => string ,
  *      )
  */
-if (!isset($contents))  $contents   = array();
+if (!isset($contents)) {
+    $contents   = array();
+}
 
 $tmp_ctt = array_filter(array(
     'title'     => $title,
     'content'   => $content
 ));
-if (!in_array($tmp_ctt, $contents)) array_unshift($contents, $tmp_ctt);
+if (!in_array($tmp_ctt, $contents)) {
+    array_unshift($contents, $tmp_ctt);
+}
 
 ?>
 <section class="extra sidebar">

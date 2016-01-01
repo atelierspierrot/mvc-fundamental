@@ -3,10 +3,18 @@
  * @see <http://github.com/atelierspierrot/mvc-fundamental>.
  */
 
-if (!isset($title))     $title      = '';
-if (!isset($page_title))$page_title = $title;
-if (!isset($content))   $content    = '';
-if (!isset($contents))  $contents   = array();
+if (!isset($title)) {
+    $title      = '';
+}
+if (!isset($page_title)) {
+    $page_title = $title;
+}
+if (!isset($content)) {
+    $content    = '';
+}
+if (!isset($contents)) {
+    $contents   = array();
+}
 
 ?><!doctype html>
 <html lang="en">
